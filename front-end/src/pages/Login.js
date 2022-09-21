@@ -1,9 +1,13 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { validate } from 'email-validator';
 import Context from '../context/Context';
 
 function Login() {
+  const prefix = 'common_login__';
+
+  const navigate = useNavigate();
+
   const {
     setEmail, email, setPassword, password, ableBtn, setAbleBtn } = useContext(Context);
 
@@ -16,6 +20,10 @@ function Login() {
       setAbleBtn(true);
     }
   };
+
+  useEffect(() => {
+    navigate('/login');
+  }, []);
 
   useEffect(() => {
     validateEmail();
@@ -33,7 +41,7 @@ function Login() {
           <input
             type="email"
             id="email-input"
-            data-testid="common_login__input-email"
+            data-testid={ `${prefix}input-email` }
             onChange={ (event) => setEmail(event.target.value) }
           />
         </label>
@@ -43,26 +51,26 @@ function Login() {
           <input
             type="password"
             id="password-input"
-            data-testid="common_login__input-password"
+            data-testid={ `${prefix}input-password` }
             onChange={ (event) => setPassword(event.target.value) }
           />
         </label>
         <button
           disabled={ ableBtn }
           type="submit"
-          data-testid="common_login__button-login"
+          data-testid={ `${prefix}button-login` }
         >
           LOGIN
         </button>
 
         <Link to="/register">
-          <button type="button" data-testid="common_login__button-register">
+          <button type="button" data-testid={ `${prefix}button-register` }>
             Ainda não tem conta
           </button>
         </Link>
 
         <p
-          data-testid="common_login__element-invalid-email"
+          data-testid={ `${prefix}element-invalid-email` }
         >
           Elemento oculto (Mensagem de erro)
         </p>
