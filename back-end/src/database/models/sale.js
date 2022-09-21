@@ -14,31 +14,62 @@ const Sale = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     user_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'User',
+        key: "id",
+      },
     },
     seller_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'User',
+        key: "id",
+      },
     },
-    total_price: {type: DataTypes.FLOAT},
-    delivery_address: {type: DataTypes.STRING},
-    delivery_number: {type: DataTypes.STRING},
-    sale_date: {type: DataTypes.DATE},
-    status: {type: DataTypes.STRING}
+    total_price: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    delivery_address: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    delivery_number: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    sale_date: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      allowNull: false
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
-    tableName: 'sale',
+    tableName: 'sales',
     timestamp: false
-  })
+  });
   
   Sale.associate = (models) => {
-    models.User.belongsToMany(models.User, {
+    Sale.belongsTo(models.User, {
       through: Sale,
-      foreignKey: 'user_id'
-    });
-    models.User.belongsToMany(models.User, {
-      through: Sale,
-      foreignKey: 'seller_id',
+      foreignKey: 'user_id',
+      as: 'user',
     });
   };
+
+  Sale.associate = (models) => {
+    Sale.belongsTo(models.User, {
+      through: Sale,
+      foreignKey: 'seller_id',
+      as: 'seller',
+    });
+  }
 
   return Sale;
 }

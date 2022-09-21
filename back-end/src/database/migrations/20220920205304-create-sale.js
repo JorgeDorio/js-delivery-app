@@ -7,7 +7,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Sales', {
+    await queryInterface.createTable('sales', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -24,15 +24,39 @@ module.exports = {
         onDelete: 'CASCADE',
         onUpdated: 'CASCADE',
       },
-      seller_id: {type: Sequelize.INTEGER},
-      total_price: {type: Sequelize.FLOAT},
-      delivery_address: {type: Sequelize.STRING},
-      delivery_number: {type: Sequelize.STRING},
-      sale_date: {type: Sequelize.DATE},
-      status: {type: Sequelize.STRING}
+      seller_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "users",
+          key: "id",
+        },
+        onDelete: 'CASCADE',
+        onUpdated: 'CASCADE',
+      },
+      total_price: {
+        type: Sequelize.DECIMAL(9,2),
+        allowNull: false
+      },
+      delivery_address: {
+        type: Sequelize.STRING(100),
+        allowNull: false
+      },
+      delivery_number: {
+        type: Sequelize.STRING(50),
+        allowNull: false
+      },
+      sale_date: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      status: {
+        type: Sequelize.STRING(50),
+        allowNull: false
+      }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Sales');
+    await queryInterface.dropTable('sales');
   }
 };

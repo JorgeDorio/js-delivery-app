@@ -5,8 +5,8 @@
  * @param {import('sequelize').DataTypes} DataTypes
 */
 
-const User = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+const Products = (sequelize, DataTypes) => {
+  const Products = sequelize.define('products', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -14,25 +14,21 @@ const User = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     name: {
+      type: DataTypes.STRING,
       allowNull: false,
-      type: DataTypes.STRING
     },
-    email: {
+    price: {
+      type: DataTypes.DECIMAL,
       allowNull: false,
-      type: DataTypes.STRING
     },
-    password: {
+    url_image: {
+      type: DataTypes.STRING,
       allowNull: false,
-      type: DataTypes.STRING
-    },
-    role: {
-      allowNull: false,
-      type: DataTypes.STRING
-    },
+    }
   }, {
-    tableName: 'users',
-    timestamp: false
-  })
+    tableName: 'products',
+    timestamps: false,
+  });
 
-  return User;
+  return Products;
 }
