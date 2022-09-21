@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import Context from '../context/Context';
 
 function Login() {
+  const context = useContext(Context);
   return (
     <>
 
       {/* <img /> */}
-
+      { console.log(context) }
       <main>
         <label htmlFor="email-input">
           <h2>Login</h2>

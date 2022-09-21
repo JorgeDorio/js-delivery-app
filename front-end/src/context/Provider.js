@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Context from './Context';
 import Router from '../Router';
 
 function Provider() {
-  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
 
-  const context = { login, setLogin };
+  const ProviderValue = useMemo(() => (
+    { email, setEmail, password, setPassword, name, setName }), [email, password, name]);
 
   return (
-    <Context.Provider value={ context }>
+    <Context.Provider value={ ProviderValue }>
       <Router />
     </Context.Provider>
   );
