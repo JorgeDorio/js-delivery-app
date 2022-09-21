@@ -5,11 +5,11 @@ import rockGlass from '../images/rockGlass.svg';
 function Home() {
   const navigate = useNavigate();
 
-  const time = 5000;
+  // const time = 5000;
 
   useEffect(() => {
-    setTimeout(() => navigate('/login'), time);
-    // navigate('/login');
+    // setTimeout(() => navigate('/login'), time);
+    navigate('/login');
   }, []);
 
   return (
