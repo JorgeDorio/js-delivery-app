@@ -1,12 +1,7 @@
 'use strict';
 
-/**
- * @param {import('sequelize').Sequelize} sequelize
- * @param {import('sequelize').DataTypes} DataTypes
-*/
-
 const SalesProducts = (sequelize, DataTypes) => {
-  const SalesProducts = sequelize.define('salesProducts', {
+  const SalesProducts = sequelize.define('SaleProduct', {
     sale_id: {
       type: DataTypes.INTEGER,
       foreignKey: true,

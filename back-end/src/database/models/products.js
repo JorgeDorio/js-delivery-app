@@ -1,12 +1,7 @@
 'use strict';
 
-/**
- * @param {import('sequelize').Sequelize} sequelize
- * @param {import('sequelize').DataTypes} DataTypes
-*/
-
 const Products = (sequelize, DataTypes) => {
-  const Products = sequelize.define('products', {
+  const Products = sequelize.define('Product', {
     id: {
       allowNull: false,
       autoIncrement: true,
