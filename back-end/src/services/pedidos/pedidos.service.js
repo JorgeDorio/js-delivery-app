@@ -13,25 +13,25 @@ const read = async () => {
 const readOne = async (id) => {
   const result = await Sale.findByPk(id);
   return result;
-}
+};
 
 const update = async (body, id) => {
   const result = await Sale.update(body, { where: { id } });
   return result;
-}
+};
 
 const updateStatus = async (status, id) => {
-  let body = await readOne(id)
-  body = body.dataValues
-  body.status = status
+  let body = await readOne(id);
+  body = body.dataValues;
+  body.status = status;
   const result = await Sale.update(body, { where: { id } });
   return result;
-}
+};
 
 const destroy = async (id) => {
   const result = await Sale.destroy({ where: { id } });
   return result;
-}
+};
 
 module.exports = {
   create,
@@ -39,5 +39,5 @@ module.exports = {
   readOne,
   update,
   updateStatus,
-  destroy
+  destroy,
 };
