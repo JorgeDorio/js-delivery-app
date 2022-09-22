@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { validate } from 'email-validator';
 import Context from '../context/Context';
+import submitLogin from '../services/api';
 import '../css/Login.css';
 
 function Login() {
@@ -20,6 +21,15 @@ function Login() {
     } else {
       setAbleBtn(true);
     }
+  };
+
+  const request = async () => {
+    const result = await submitLogin(email, password);
+    // console.log(result);
+    return result;
+    // if(result.role === 'administrator') {
+    //  navigate('')
+    // }
   };
 
   useEffect(() => {
@@ -60,8 +70,9 @@ function Login() {
           <button
             className="btn-green"
             disabled={ ableBtn }
-            type="submit"
+            type="button"
             data-testid={ `${prefix}button-login` }
+            onClick={ request }
           >
             LOGIN
           </button>
