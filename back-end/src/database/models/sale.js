@@ -1,6 +1,6 @@
 'use strict';
 
-const Sale = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Sale = sequelize.define('Sale', {
     id: {
       allowNull: false,
@@ -11,18 +11,20 @@ const Sale = (sequelize, DataTypes) => {
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'User',
-        key: "id",
-      },
+      foreignKey: true,
+      // references: {
+      //   model: 'User',
+      //   key: "id",
+      // },
     },
     seller_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'User',
-        key: "id",
-      },
+      foreignKey: true,
+      // references: {
+      //   model: 'User',
+      //   key: "id",
+      // },
     },
     total_price: {
       type: DataTypes.DECIMAL,
@@ -47,7 +49,7 @@ const Sale = (sequelize, DataTypes) => {
     }
   }, {
     tableName: 'sales',
-    timestamp: false
+    timestamps: false
   });
   
   Sale.associate = (models) => {

@@ -1,6 +1,6 @@
 'use strict';
 
-const User = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
       allowNull: false,
@@ -26,7 +26,7 @@ const User = (sequelize, DataTypes) => {
     },
   }, {
     tableName: 'users',
-    timestamp: false
+    timestamps: false
   });
 
   // User.associate = (models) => {
@@ -38,5 +38,3 @@ const User = (sequelize, DataTypes) => {
 
   return User;
 }
-
-module.exports = User;

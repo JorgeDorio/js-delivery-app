@@ -4,8 +4,6 @@ const { User } = require('../database/models');
 const globalError = require('../helpers/error/global.error');
 const { route } = require('../routes/index');
 
-console.log(User);
-
 const app = express();
 
 app.use(express.json());
