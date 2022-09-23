@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { validate } from 'email-validator';
+import createUser from '../services/api';
 import Context from '../context/Context';
-import '../css/Register.css';
 
 function Register() {
   const prefix = 'common_register__';
@@ -15,6 +15,8 @@ function Register() {
     password,
     ableBtn,
     setAbleBtn,
+    notFound,
+    setNotFound,
   } = useContext(Context);
 
   const SIX = 6;
@@ -28,68 +30,69 @@ function Register() {
     }
   };
 
+  const request = async () => {
+    const result = await createUser(name, email, password);
+    console.log(result);
+    if (!result) {
+      setNotFound(true);
+    } else {
+      setNotFound(false);
+    }
+    return result;
+  };
+
   useEffect(() => {
     validateEmail();
-  }, [ableBtn, email, password, name]);
+  }, [ableBtn, email, password, name, notFound]);
 
   return (
     <>
-      { console.log(name) }
-      { console.log(email) }
-      { console.log(password) }
+      { console.log(ableBtn) }
       <title>Cadastro</title>
-      <main className="register-main">
-        <h1>Cadastro</h1>
-        <form>
+      <main>
 
+        <label htmlFor="name-input">
+          <h2>Nome</h2>
+          <input
+            type="name"
+            id="name-input"
+            data-testid={ `${prefix}input-name` }
+            onChange={ (event) => setName(event.target.value) }
+          />
+        </label>
 
-          <label htmlFor="name-input">
-            <h2>Nome</h2>
-            <input
-              placeholder="  Seu nome"
-              type="name"
-              id="name-input"
-              data-testid={ `${prefix}input-name` }
-              onChange={ (event) => setName(event.target.value) }
-            />
-          </label>
+        <label htmlFor="email-input">
+          <h2>Login</h2>
+          <input
+            type="email"
+            id="email-input"
+            data-testid={ `${prefix}input-email` }
+            onChange={ (event) => setEmail(event.target.value) }
+          />
+        </label>
 
-          <label htmlFor="email-input">
-            <h2>Email</h2>
-            <input
-              placeholder="  seu-email@site.com.br"
-              type="email"
-              id="email-input"
-              data-testid={ `${prefix}input-email` }
-              onChange={ (event) => setEmail(event.target.value) }
-            />
-          </label>
-
-          <label htmlFor="password-input">
-            <h2>Senha</h2>
-            <input
-              placeholder="  **********"
-              type="password"
-              id="password-input"
-              data-testid={ `${prefix}input-password` }
-              onChange={ (event) => setPassword(event.target.value) }
-            />
-          </label>
-          <button
-            className="btn-green"
-            type="submit"
-            data-testid={ `${prefix}button-register` }
-            disabled={ ableBtn }
-          >
-            CADASTRAR
-          </button>
-        </form>
-        <p
-          data-testid={ `${prefix}element-invalid-register` }
-        >
-          Elemento oculto (Mensagem de erro)
-        </p>
+        <label htmlFor="password-input">
+          <h2>Senha</h2>
+          <input
+            type="password"
+            id="password-input"
+            data-testid={ `${prefix}input-password` }
+            onChange={ (event) => setPassword(event.target.value) }
+          />
+        </label>
       </main>
+
+      <button
+        type="button"
+        data-testid={ `${prefix}button-register` }
+        disabled={ ableBtn }
+        onClick={ request }
+      >
+        CADASTRAR
+      </button>
+      { !notFound
+        ? <p data-testid={ `${prefix}element-invalid-register` } />
+        : <p data-testid={ `${prefix}element-invalid-register` }>{message}</p> }
     </>
   );
 }
