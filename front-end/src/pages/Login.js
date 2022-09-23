@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { validate } from 'email-validator';
 import Context from '../context/Context';
 import submitLogin from '../services/api';
@@ -59,10 +59,12 @@ function Login() {
     <>
       {/* <img /> */}
       <main className="block-main">
+        <h1>{'<Nome do seu app>'}</h1>
         <form>
           <label htmlFor="email-input">
             <h2>Login</h2>
             <input
+              placeholder="  email@trybeer.com.br"
               type="email"
               id="email-input"
               data-testid={ `${prefix}input-email` }
@@ -73,6 +75,7 @@ function Login() {
           <label htmlFor="password-input">
             <h2>Senha</h2>
             <input
+              placeholder="  **********"
               type="password"
               id="password-input"
               data-testid={ `${prefix}input-password` }
@@ -89,15 +92,15 @@ function Login() {
             LOGIN
           </button>
 
-          <Link to="/register">
-            <button
-              className="btn-gray"
-              type="button"
-              data-testid={ `${prefix}button-register` }
-            >
-              Ainda não tem conta
-            </button>
-          </Link>
+          <button
+            className="btn-gray"
+            type="button"
+            data-testid={ `${prefix}button-register` }
+            onClick={ () => navigate('/register') }
+          >
+            Ainda não tenho conta
+          </button>
+
         </form>
         { !notFound
           ? <p data-testid={ `${prefix}element-invalid-email` } />

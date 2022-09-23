@@ -1,11 +1,17 @@
-// const { registerSchema } = require('./schemas/registerSchema');
+const { registerSchema } = require('./schemas/registerSchema');
 
-// const validationRegister = (req, res, next) => {
-//   const { nome, email, password } = req.body;
+const validationRegister = (req, res, next) => {
+  const { name, email, password } = req.body;
 
-//   const { error } = registerSchema.validate({ nome, email, password });
-// };
+  const { error } = registerSchema.validate({ name, email, password });
 
-// module.exports = {
-//   validationRegister,
-// };
+  if (error) {
+    return res.status(400).json({ message: error.message });
+  }
+
+  next();
+};
+
+module.exports = {
+  validationRegister,
+};
