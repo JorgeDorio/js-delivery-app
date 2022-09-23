@@ -9,9 +9,13 @@ function Login() {
   const prefix = 'common_login__';
 
   const navigate = useNavigate();
+  const message = 'Usuário não foi encontrado';
 
   const {
-    setEmail, email, setPassword, password, ableBtn, setAbleBtn } = useContext(Context);
+    setEmail,
+    email,
+    setPassword,
+    password, ableBtn, setAbleBtn, notFound, setNotFound } = useContext(Context);
 
   const SIX = 6;
 
@@ -25,11 +29,22 @@ function Login() {
 
   const request = async () => {
     const result = await submitLogin(email, password);
-    // console.log(result);
+    console.log(result);
+    if (!result) {
+      setNotFound(true);
+    } else {
+      setNotFound(false);
+    }
+    if (result.role === 'administrator') {
+      navigate('/admin/manage');
+    }
+    if (result.role === 'customer') {
+      navigate('/customer/products');
+    }
+    if (result.role === 'seller') {
+      navigate('/seller/orders');
+    }
     return result;
-    // if(result.role === 'administrator') {
-    //  navigate('')
-    // }
   };
 
   // useEffect(() => {
@@ -38,14 +53,11 @@ function Login() {
 
   useEffect(() => {
     validateEmail();
-  }, [ableBtn, email, password]);
+  }, [ableBtn, email, password, notFound]);
 
   return (
     <>
       {/* <img /> */}
-      { console.log(email) }
-      { console.log(password) }
-      { console.log(ableBtn) }
       <main className="block-main">
         <h1>{'<Nome do seu app>'}</h1>
         <form>
@@ -90,13 +102,9 @@ function Login() {
           </button>
 
         </form>
-
-        <p
-          data-testid={ `${prefix}element-invalid-email` }
-        >
-          Elemento oculto (Mensagem de erro)
-        </p>
-
+        { !notFound
+          ? <p data-testid={ `${prefix}element-invalid-email` } />
+          : <p data-testid={ `${prefix}element-invalid-email` }>{message}</p> }
       </main>
     </>
   );
