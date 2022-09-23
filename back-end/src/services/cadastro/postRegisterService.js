@@ -5,11 +5,12 @@ const { generateToken } = require('../../helpers/token/generateToken');
 
 const postRegisterService = async (user) => {
   const { name, email, password } = user;
-  const userExists = await User.findOne({ where: { email } });
+  const userExistsEmail = await User.findOne({ where: { email } });
+  const userExistsName = await User.findOne({ where: { name } });
 
-  if (userExists) throw new CustomError(409, 'User already exists');
+  if (userExistsEmail || userExistsName) throw new CustomError(409, 'User already exists');
 
-  if (!name || !email || !password) throw new CustomError(409, 'Nome, email, password required');
+  // if (!name || !email || !password) throw new CustomError(409, 'Nome, email, password required');
 
   const hashPassword = md5(password).toString();
 
