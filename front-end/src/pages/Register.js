@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { validate } from 'email-validator';
+import createUser from '../services/api';
 import Context from '../context/Context';
 
 function Register() {
@@ -14,6 +15,8 @@ function Register() {
     password,
     ableBtn,
     setAbleBtn,
+    notFound,
+    setNotFound,
   } = useContext(Context);
 
   const SIX = 6;
@@ -27,15 +30,24 @@ function Register() {
     }
   };
 
+  const request = async () => {
+    const result = await createUser(name, email, password);
+    console.log(result);
+    if (!result) {
+      setNotFound(true);
+    } else {
+      setNotFound(false);
+    }
+    return result;
+  };
+
   useEffect(() => {
     validateEmail();
-  }, [ableBtn, email, password, name]);
+  }, [ableBtn, email, password, name, notFound]);
 
   return (
     <>
-      { console.log(name) }
-      { console.log(email) }
-      { console.log(password) }
+      { console.log(ableBtn) }
       <title>Cadastro</title>
       <main>
 
@@ -71,18 +83,16 @@ function Register() {
       </main>
 
       <button
-        type="submit"
+        type="button"
         data-testid={ `${prefix}button-register` }
         disabled={ ableBtn }
+        onClick={ request }
       >
         CADASTRAR
       </button>
-
-      <p
-        data-testid={ `${prefix}element-invalid-register` }
-      >
-        Elemento oculto (Mensagem de erro)
-      </p>
+      { !notFound
+        ? <p data-testid={ `${prefix}element-invalid-register` } />
+        : <p data-testid={ `${prefix}element-invalid-register` }>{message}</p> }
     </>
   );
 }
