@@ -32,6 +32,7 @@ function Register() {
   };
 
   const request = async () => {
+    // commit
     const result = await createUser(name, email, password);
     console.log(result);
     if (!result) {
