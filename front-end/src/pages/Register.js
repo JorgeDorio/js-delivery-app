@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { validate } from 'email-validator';
-import createUser from '../services/api';
+import { createUser } from '../services/api';
 import Context from '../context/Context';
+import '../css/Register.css';
 
 function Register() {
   const prefix = 'common_register__';
