@@ -8,7 +8,7 @@ const loginUserService = async (userObj) => {
   const userLogin = await User.findOne({ where: { email } });
 
   if (!userLogin) throw new CustomError(404, 'Not found');
-  
+
   const hashPassword = md5(password);
 
   const passwordValid = userLogin.password === hashPassword;
@@ -18,6 +18,7 @@ const loginUserService = async (userObj) => {
   const token = generateToken({
     email,
     hashPassword,
+    role: userLogin.role
   });
 
   const userPersonalite = {

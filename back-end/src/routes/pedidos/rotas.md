@@ -20,6 +20,7 @@ body:
 
 #### 2. Receber todos os pedidos
 GET `/pedidos`
+Role: Seller
 
 Retorna todos os pedidos da tabela
 

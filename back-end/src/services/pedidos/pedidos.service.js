@@ -1,7 +1,12 @@
-const { Sale } = require('../../database/models');
+const { Sale, SaleProduct } = require('../../database/models');
 
 const create = async (body) => {
+  const { products } = body;
   const result = await Sale.create(body);
+  products.forEach(product => {
+    product.sale_id = result.id
+  });
+  await SaleProduct.bulkCreate(products)
   return result;
 };
 
