@@ -18,7 +18,7 @@ const loginUserService = async (userObj) => {
   const token = generateToken({
     email,
     hashPassword,
-    role: userLogin.role
+    role: userLogin.role,
   });
 
   const userPersonalite = {

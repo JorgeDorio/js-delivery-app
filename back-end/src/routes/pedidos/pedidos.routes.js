@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const controller = require('../../controllers/pedidos/pedidos.constroller');
 const paths = require('./paths');
-const roleValidation = require('../../middlewares/role/role.validation')
+const roleValidation = require('../../middlewares/role/role.validation');
 
 const router = Router();
 
