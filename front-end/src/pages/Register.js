@@ -32,7 +32,7 @@ function Register() {
   };
 
   const request = async () => {
-    // commit para resolver GitHub
+    // commit para resolver b.o GitHub
     const result = await createUser(name, email, password);
     console.log(result);
     if (!result) {
@@ -94,6 +94,7 @@ function Register() {
             type="submit"
             data-testid={ `${prefix}button-register` }
             disabled={ ableBtn }
+            onClick={ request }
           >
             CADASTRAR
           </button>
