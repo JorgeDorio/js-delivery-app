@@ -1,19 +1,25 @@
 :root {
+
   --primary-color: #036b52;
+
   --secundary-color: #2fc18c;
+
   --tertiary-color: #421981;
-  --quaternary-color: #056Cf9;
-  --light-text: #fff;
-  --dark-text: #000;
+
+  --quaternary-color: #056cf9;
+
+  --light-text: white;
+
+  --dark-text: black;
 }
 
 header {
-  width: 100%;
-  height: 105px;
+  align-items: center;
   background-color: var(--primary-color);
   display: flex;
-  align-items: center;
+  height: 105px;
   justify-content: space-between;
+  width: 100%;
 }
 
 .right-content-header, .left-content-header {
@@ -21,35 +27,33 @@ header {
 }
 
 .element-navbar-link-logout {
-  width: 180px;
-  height: 104px;
+  align-items: center;
   background-color: var(--quaternary-color);
   display: flex;
-  align-items: center;
+  height: 104px;
   justify-content: center;
+  width: 180px;
 }
 
 .element-navbar-user-full-name {
-  height: 104px;
-  width: 359px;
+  align-items: center;
   background: var(--tertiary-color);
   display: flex;
-  align-items: center;
+  height: 104px;
   justify-content: center;
+  width: 359px;
 }
 
-.element-navbar-link-products,
-.element-navbar-link-orders {
-  height: 105px;
-  width: 367px;
+.element-navbar-link-products, .element-navbar-link-orders {
+  align-items: center;
   background: var(--primary-color);
   display: flex;
-  align-items: center;
+  height: 105px;
   justify-content: center;
+  width: 367px;
 }
 
-.element-navbar-link-products:hover,
-.element-navbar-link-orders:hover {
+.element-navbar-link-products:hover, .element-navbar-link-orders:hover {
   background: var(--secundary-color);
 }
 
