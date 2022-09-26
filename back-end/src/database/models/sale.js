@@ -8,58 +8,58 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
-      // references: {
-      //   model: 'User',
-      //   key: "id",
-      // },
+      field: 'user_id'
     },
-    seller_id: {
+    sellerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
-      // references: {
-      //   model: 'User',
-      //   key: "id",
-      // },
+      field: 'seller_id'
     },
-    total_price: {
+    totalPrice: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
+      field: 'total_price'
     },
-    delivery_address: {
+    deliveryAddress: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      field: 'delivery_address'
     },
-    delivery_number: {
+    deliveryNumber: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      field: 'delivery_number'
     },
-    sale_date: {
+    saleDate: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
-      allowNull: false
+      allowNull: false,
+      field: 'sale_date'
     },
     status: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      field: 'status'
     }
   }, {
     tableName: 'sales',
-    timestamps: false
+    timestamps: false,
+    underscored: true
   });
 
   Sale.associate = (models) => {
     Sale.belongsTo(models.User, {
-      foreignKey: 'userId',
+      foreignKey: 'user_id',
       as: 'user',
     });
 
     Sale.belongsTo(models.User, {
-      foreignKey: 'sellerId',
+      foreignKey: 'seller_id',
       as: 'seller',
     });
   }
