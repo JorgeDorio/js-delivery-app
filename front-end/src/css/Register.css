@@ -1,44 +1,38 @@
-body {
-  box-sizing: border-box;
-  color: #001813;
-  font-family: Roboto , sans-serif;
-  margin: 0;
-  padding: 0;
-  text-indent: 19px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap') ;
 
-.title-main h1 {
-  font-family: Roboto , sans-serif;
-  height: 63px;
-  width: 425px;
-}
-
-.block-main {
+.register-main {
   align-items: center;
   display: flex;
   flex-direction: column;
-  font-style: normal;
+  font-family: Roboto , sans-serif;
   height: 100vh;
   justify-content: center;
+  text-indent: 19px;
   width: 100vw;
 }
 
-.block-main form {
+.register-main h1 {
+  color: rgb(0, 24, 19, 1);
+  font-size: 36px;
+  line-height: 42.19px;
+}
+
+.register-main form {
   align-items: center;
   background-color: #e5e5e5;
-  border: #b1c2be;
-  border-radius: 4px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   height: 508px;
   justify-content: center;
+  margin-top: 0;
   width: 425px;
 }
 
-.block-main h2 {
-  font-family: Roboto , sans-serif;
+.register-main h2 {
   font-size: 24px;
+  font-weight: 400;
+  line-height: 28.13px;
   margin-bottom: 5px;
 }
 
@@ -49,17 +43,9 @@ body {
   line-height: 28.13px;
 }
 
-.block-main input {
+.register-main input, button {
   border: 1px solid gray;
   border-radius: 5px;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  height: 70px;
-  width: 371px;
-}
-
-.block-main button {
-  border: 1px solid gray;
-  border-radius: 10px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   height: 70px;
   width: 371px;
@@ -68,19 +54,12 @@ body {
 .btn-green {
   background-color: #036b52;
   color: white;
-  margin-bottom: 20px;
-  width: 371px;
-}
-
-.btn-gray {
-  background-color: #e5e5e5;
-  color: #036b52;
-  font-family: Roboto , sans-serif;
   font-size: 28px;
-  line-height: 32.81px;
+  margin-bottom: 20px;
+  margin-top: 30px;
 }
 
-.block-main p {
+.register-main p {
   color: rgb(135, 135, 135, 1);
   font-size: 12px;
   line-height: 14.06px;

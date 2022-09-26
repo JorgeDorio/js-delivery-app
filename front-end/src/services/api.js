@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3003',
+  baseURL: 'http://localhost:3001',
 });
 
 const submitLogin = async (email, password) => {
@@ -10,19 +10,21 @@ const submitLogin = async (email, password) => {
       const result = res.data;
       return result;
     })
-    .catch((error) => console.log(error));
+    .catch(() => false);
   return response;
 };
 
-// const request = await api
-//       .post('/login', { username, password })
-//       .catch(() => false);
-//     if (!request) {
-//       setWrongCredentials(true);
-//     } else {
-//       localStorage.setItem('user', username)
-//       navigate('/home');
-//     }
-//   };
+const createUser = async (name, email, password) => {
+  const response = api.post('/register', { name, email, password })
+    .then((res) => {
+      const result = res.data;
+      return result;
+    })
+    .catch(() => false);
+  return response;
+};
 
-export default submitLogin;
+export default {
+  submitLogin,
+  createUser,
+};
