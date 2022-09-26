@@ -5,6 +5,7 @@ const roleValidation = require('../../middlewares/role/role.validation');
 
 const router = Router();
 
+router.get(paths.pedidosCustomer, controller.readByCustomer);
 router.delete(paths.pedidosId, controller.destroy);
 router.patch(paths.pedidosId, controller.updateStatus);
 router.put(paths.pedidosId, controller.update);

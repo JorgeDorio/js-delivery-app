@@ -18,18 +18,19 @@ body:
 }
 ~~~
 
-#### 2. Receber todos os pedidos
+#### 2. Receber todos os pedidos de qualquer cliente
 GET `/pedidos`
 Role: Seller
 
-Retorna todos os pedidos da tabela
+#### 3. Receber todos os pedidos de um cliente especifico
+GET `/pedidos/c/:id(id do cliente)`
 
-#### 3. Receber pedido especifico
+#### 4. Receber pedido especifico
 GET `/pedidos/:id`
 
 Retorna o pedido correspondente ao ID passado
 
-#### 4. Atualizar pedido completo
+#### 5. Atualizar pedido completo
 PUT `/pedidos/:id`
 
 body:
@@ -46,7 +47,7 @@ body:
 }
 ~~~
 
-#### 5. Atualizar status do pedido
+#### 6. Atualizar status do pedido
 PATCH `/pedidos/:id`
 
 body:

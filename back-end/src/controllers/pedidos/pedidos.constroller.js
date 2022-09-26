@@ -6,6 +6,12 @@ const create = async (req, res) => {
   return res.status(200).json(result);
 };
 
+const readByCustomer = async (req, res) => {
+  const { id } = req.params;
+  const result = await service.readCustomer(id);
+  return res.status(200).json(result);
+};
+
 const read = async (_req, res) => {
   const result = await service.read();
   return res.status(200).json(result);
@@ -44,4 +50,5 @@ module.exports = {
   update,
   updateStatus,
   destroy,
+  readByCustomer,
 };

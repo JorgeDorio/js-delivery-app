@@ -8,6 +8,20 @@ const create = async (body) => {
   return result;
 };
 
+const readCustomer = async (id) => {
+  const result = await Sale.findAll(
+    {
+      attributes: [
+        'id', 'userId', 'sellerId',
+        'totalPrice', 'saleDate',
+        'deliveryAddress', 'deliveryNumber',
+      ],
+      where: { userId: id },
+    },
+  );
+  return result;
+};
+
 const read = async () => {
   const result = await Sale.findAll(
     {
@@ -18,7 +32,6 @@ const read = async () => {
       ],
     },
   );
-
   return result;
 };
 
@@ -52,4 +65,5 @@ module.exports = {
   update,
   updateStatus,
   destroy,
+  readCustomer,
 };
