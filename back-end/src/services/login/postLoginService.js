@@ -6,8 +6,10 @@ const { generateToken } = require('../../helpers/token/generateToken');
 const loginUserService = async (userObj) => {
   const { email, password } = userObj;
   const userLogin = await User.findOne({ where: { email } });
+  console.log(userLogin);
 
-  if (!userLogin) throw new CustomError(404, 'Not found');
+  if (userLogin == null) throw new CustomError(404, 'Not found');
+  const { name, role } = userLogin;
 
   const hashPassword = md5(password);
 

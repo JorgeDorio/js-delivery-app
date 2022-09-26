@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const registerSchema = Joi.object({
-  nome: Joi.string().min(12).empty().required()
+  name: Joi.string().min(12).empty().required()
     .messages({
       'string.min': 'Digite o seu Nome Completo',
       'string.empty': 'O campo "nome" não pode ser vazio',

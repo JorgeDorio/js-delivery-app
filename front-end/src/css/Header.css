@@ -1,0 +1,63 @@
+:root {
+
+  --primary-color: #036b52;
+
+  --secundary-color: #2fc18c;
+
+  --tertiary-color: #421981;
+
+  --quaternary-color: #056cf9;
+
+  --light-text: white;
+
+  --dark-text: black;
+}
+
+header {
+  align-items: center;
+  background-color: var(--primary-color);
+  display: flex;
+  height: 105px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.right-content-header, .left-content-header {
+  display: flex;
+}
+
+.element-navbar-link-logout {
+  align-items: center;
+  background-color: var(--quaternary-color);
+  display: flex;
+  height: 104px;
+  justify-content: center;
+  width: 180px;
+}
+
+.element-navbar-user-full-name {
+  align-items: center;
+  background: var(--tertiary-color);
+  display: flex;
+  height: 104px;
+  justify-content: center;
+  width: 359px;
+}
+
+.element-navbar-link-products, .element-navbar-link-orders {
+  align-items: center;
+  background: var(--primary-color);
+  display: flex;
+  height: 105px;
+  justify-content: center;
+  width: 367px;
+}
+
+.element-navbar-link-products:hover, .element-navbar-link-orders:hover {
+  background: var(--secundary-color);
+}
+
+a {
+  color: var(--light-text);
+  text-decoration: none;
+}

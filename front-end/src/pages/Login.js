@@ -1,11 +1,21 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { validate } from 'email-validator';
 import Context from '../context/Context';
+import { submitLogin } from '../services/api';
+import '../css/Login.css';
 
 function Login() {
+  const prefix = 'common_login__';
+
+  const navigate = useNavigate();
+  const message = 'Usuário não foi encontrado';
+
   const {
-    setEmail, email, setPassword, password, ableBtn, setAbleBtn } = useContext(Context);
+    setEmail,
+    email,
+    setPassword,
+    password, ableBtn, setAbleBtn, notFound, setNotFound } = useContext(Context);
 
   const SIX = 6;
 
@@ -17,56 +27,84 @@ function Login() {
     }
   };
 
+  const request = async () => {
+    const result = await submitLogin(email, password);
+    console.log(result);
+    if (!result) {
+      setNotFound(true);
+    } else {
+      setNotFound(false);
+    }
+    if (result.role === 'administrator') {
+      navigate('/admin/manage');
+    }
+    if (result.role === 'customer') {
+      navigate('/customer/products');
+    }
+    if (result.role === 'seller') {
+      navigate('/seller/orders');
+    }
+    return result;
+  };
+
+  useEffect(() => {
+    navigate('/login');
+  }, []);
+
   useEffect(() => {
     validateEmail();
-  }, [ableBtn, email, password]);
+  }, [ableBtn, email, password, notFound]);
 
   return (
     <>
       {/* <img /> */}
-      { console.log(email) }
-      { console.log(password) }
-      { console.log(ableBtn) }
-      <main>
-        <label htmlFor="email-input">
-          <h2>Login</h2>
-          <input
-            type="email"
-            id="email-input"
-            data-testid="common_login__input-email"
-            onChange={ (event) => setEmail(event.target.value) }
-          />
-        </label>
+      <main className="block-main">
+        <h1>{'<Nome do seu app>'}</h1>
+        <form>
+          <label htmlFor="email-input">
+            <h2>Login</h2>
+            <input
+              placeholder="  email@trybeer.com.br"
+              type="email"
+              id="email-input"
+              data-testid={ `${prefix}input-email` }
+              onChange={ (event) => setEmail(event.target.value) }
+            />
+          </label>
 
-        <label htmlFor="password-input">
-          <h2>Senha</h2>
-          <input
-            type="password"
-            id="password-input"
-            data-testid="common_login__input-password"
-            onChange={ (event) => setPassword(event.target.value) }
-          />
-        </label>
-        <button
-          disabled={ ableBtn }
-          type="submit"
-          data-testid="common_login__button-login"
-        >
-          LOGIN
-        </button>
-
-        <Link to="/register">
-          <button type="button" data-testid="common_login__button-register">
-            Ainda não tem conta
+          <label htmlFor="password-input">
+            <h2>Senha</h2>
+            <input
+              placeholder="  **********"
+              type="password"
+              id="password-input"
+              data-testid={ `${prefix}input-password` }
+              onChange={ (event) => setPassword(event.target.value) }
+            />
+          </label>
+          <button
+            className="btn-green"
+            disabled={ ableBtn }
+            type="button"
+            data-testid={ `${prefix}button-login` }
+            onClick={ request }
+          >
+            LOGIN
           </button>
-        </Link>
 
-        <p
-          data-testid="common_login__element-invalid-email"
-        >
-          Elemento oculto (Mensagem de erro)
-        </p>
+          <button
+            className="btn-gray"
+            type="button"
+            data-testid={ `${prefix}button-register` }
+            onClick={ () => navigate('/register') }
+          >
+            Ainda não tenho conta
+          </button>
 
+        </form>
+        { !notFound
+          ? <p data-testid={ `${prefix}element-invalid-email` } />
+          : <p data-testid={ `${prefix}element-invalid-email` }>{message}</p> }
       </main>
     </>
   );
