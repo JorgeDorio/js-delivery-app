@@ -1,20 +1,23 @@
-const { Sale, SaleProduct, Product, sequelize } = require('../../database/models');
+const { Sale, SaleProduct } = require('../../database/models');
 
 const create = async (body) => {
   const { products } = body;
   const result = await Sale.create(body);
-  products.forEach((product) => {
-    product.saleId = result.id;
-  });
-  await SaleProduct.bulkCreate(products);
+  const a = products.map((product) => ({ ...product, saleId: result.id })); // eslint-disable-line no-param-reassign
+  await SaleProduct.bulkCreate(a);
   return result;
 };
 
 const read = async () => {
   const result = await Sale.findAll(
-    { attributes: ['id', 'userId', 'sellerId', 'totalPrice', 'saleDate', 'deliveryAddress', 'deliveryNumber'] }
+    {
+      attributes: [
+        'id', 'userId', 'sellerId',
+        'totalPrice', 'saleDate',
+        'deliveryAddress', 'deliveryNumber',
+      ],
+    },
   );
-
 
   return result;
 };
