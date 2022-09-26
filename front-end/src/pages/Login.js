@@ -47,9 +47,9 @@ function Login() {
     return result;
   };
 
-  // useEffect(() => {
-  //   navigate('/login');
-  // }, []);
+  useEffect(() => {
+    navigate('/login');
+  }, []);
 
   useEffect(() => {
     validateEmail();

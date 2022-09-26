@@ -91,7 +91,7 @@ function Register() {
           </label>
           <button
             className="btn-green"
-            type="submit"
+            type="button"
             data-testid={ `${prefix}button-register` }
             disabled={ ableBtn }
             onClick={ request }
