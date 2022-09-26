@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { validate } from 'email-validator';
 import Context from '../context/Context';
-import submitLogin from '../services/api';
+import { submitLogin } from '../services/api';
 import '../css/Login.css';
 
 function Login() {
@@ -47,9 +47,9 @@ function Login() {
     return result;
   };
 
-  // useEffect(() => {
-  //   navigate('/login');
-  // }, []);
+  useEffect(() => {
+    navigate('/login');
+  }, []);
 
   useEffect(() => {
     validateEmail();
