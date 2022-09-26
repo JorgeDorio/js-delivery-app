@@ -32,7 +32,7 @@ function Register() {
   };
 
   const request = async () => {
-    // commit
+    // commit para resolver GitHub
     const result = await createUser(name, email, password);
     console.log(result);
     if (!result) {
