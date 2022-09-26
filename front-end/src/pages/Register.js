@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { validate } from 'email-validator';
-
+import { useNavigate } from 'react-router-dom';
 import { createUser } from '../services/api';
-
 import Context from '../context/Context';
 import '../css/Register.css';
 
 function Register() {
   const prefix = 'common_register__';
+  const message = 'Usuário já cadastrado';
+  const navigate = useNavigate();
 
   const {
     setName,
@@ -18,6 +19,8 @@ function Register() {
     password,
     ableBtn,
     setAbleBtn,
+    notFound,
+    setNotFound,
   } = useContext(Context);
 
   const SIX = 6;
@@ -39,13 +42,14 @@ function Register() {
       setNotFound(true);
     } else {
       setNotFound(false);
+      navigate('/customer/products');
     }
     return result;
   };
 
   useEffect(() => {
     validateEmail();
-  }, [ableBtn, email, password, name]);
+  }, [ableBtn, email, password, name, notFound]);
 
   return (
     <>
@@ -99,11 +103,9 @@ function Register() {
             CADASTRAR
           </button>
         </form>
-        <p
-          data-testid={ `${prefix}element-invalid-register` }
-        >
-          Elemento oculto (Mensagem de erro)
-        </p>
+        { !notFound
+          ? <p data-testid={ `${prefix}element-invalid_register` } />
+          : <p data-testid={ `${prefix}element-invalid_register` }>{message}</p> }
       </main>
     </>
   );
