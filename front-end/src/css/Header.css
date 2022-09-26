@@ -1,0 +1,59 @@
+:root {
+  --primary-color: #036b52;
+  --secundary-color: #2fc18c;
+  --tertiary-color: #421981;
+  --quaternary-color: #056Cf9;
+  --light-text: #fff;
+  --dark-text: #000;
+}
+
+header {
+  width: 100%;
+  height: 105px;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.right-content-header, .left-content-header {
+  display: flex;
+}
+
+.element-navbar-link-logout {
+  width: 180px;
+  height: 104px;
+  background-color: var(--quaternary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.element-navbar-user-full-name {
+  height: 104px;
+  width: 359px;
+  background: var(--tertiary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.element-navbar-link-products,
+.element-navbar-link-orders {
+  height: 105px;
+  width: 367px;
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.element-navbar-link-products:hover,
+.element-navbar-link-orders:hover {
+  background: var(--secundary-color);
+}
+
+a {
+  color: var(--light-text);
+  text-decoration: none;
+}
