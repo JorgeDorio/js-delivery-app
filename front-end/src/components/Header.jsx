@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <>
       {
-        (location.pathname).includes('costumer') && <Costumer />
+        (location.pathname).includes('customer') && <Costumer />
       }
       {
         (location.pathname).includes('admin') && <Admin />

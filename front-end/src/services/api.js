@@ -24,7 +24,18 @@ const createUser = async (name, email, password) => {
   return response;
 };
 
+const getProducts = async () => {
+  const response = api.get('/customer/products')
+    .then((returnApiProducts) => {
+      const result = returnApiProducts.data;
+      return result;
+    })
+    .catch(() => false);
+  return response;
+};
+
 export {
   submitLogin,
   createUser,
+  getProducts,
 };
