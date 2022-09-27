@@ -11,7 +11,12 @@ function ProductCard({ name, id, price, url }) {
       <h1 data-testid={ `${prefix}element-card-price-${id}` }>
         {`R$ ${price.replace('.', ',')}`}
       </h1>
-      <img data-testid={ `${prefix}img-card-bg-image-${id}` } src={ url } alt={ name } />
+      <img
+        data-testid={ `${prefix}img-card-bg-image-${id}` }
+        src={ url }
+        alt={ name }
+        className={ `img-${id}-product` }
+      />
       <p data-testid={ `${prefix}element-card-title-${id}` }>{name}</p>
       <div className="quantity">
         <button

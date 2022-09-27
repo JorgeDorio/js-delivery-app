@@ -14,7 +14,7 @@ function CustomerProducts() {
 
   useEffect(() => {
     fetchData();
-    console.log('renderizou');
+    console.log(JSON.parse(localStorage.getItem('user')));
   }, []);
 
   return (
