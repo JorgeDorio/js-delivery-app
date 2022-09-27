@@ -1,11 +1,72 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import '../css/ProductCard.css';
+import Context from '../context/Context';
 
 const prefix = 'customer_products__';
 
 function ProductCard({ name, id, price, url }) {
   const [count, setCount] = useState(0);
+  const { setProductsArray } = useContext(Context);
+
+  const emptyLocalStorage = () => {
+    const storage = JSON.parse(localStorage.getItem('productsInCar'));
+    if (!storage || storage.length === 0) {
+      localStorage.setItem('productsInCar', JSON.stringify([]));
+    }
+  };
+
+  useEffect(() => {
+    localStorage.removeItem('productsInCar');
+    emptyLocalStorage();
+  }, []);
+
+  const plus = () => {
+    setCount(count + 1);
+    const object = {
+      id,
+      name,
+      price,
+      url,
+      quantity: 1,
+    };
+    const getProduct = JSON.parse(localStorage.getItem('productsInCar'));
+    const findById = getProduct.find((product) => product.id === object.id);
+    if (findById) {
+      findById.quantity += 1;
+    } else {
+      getProduct.push(object);
+    }
+    localStorage.setItem('productsInCar', JSON.stringify(getProduct));
+    setProductsArray(getProduct);
+  };
+
+  const minus = () => {
+    if (count > 0) setCount(count - 1);
+    const object = {
+      id,
+      name,
+      price,
+      url,
+      quantity: 1,
+    };
+    const getProduct = JSON.parse(localStorage.getItem('productsInCar'));
+    const findById = getProduct.find((product) => product.id === object.id);
+    if (findById && findById.quantity >= 1) {
+      findById.quantity -= 1;
+      console.log(getProduct);
+      localStorage.setItem('productsInCar', JSON.stringify(getProduct));
+      setProductsArray(getProduct);
+    }
+    if (findById.quantity === 0) {
+      const newArray = getProduct.filter((product) => product.id === object.id);
+      // console.log(newArray);
+      localStorage.removeItem('productsInCar');
+      localStorage.setItem('productsInCar', JSON.stringify(newArray));
+      setProductsArray(newArray);
+    }
+  };
+
   return (
     <div className="product-card">
       <h1 data-testid={ `${prefix}element-card-price-${id}` }>
@@ -22,7 +83,7 @@ function ProductCard({ name, id, price, url }) {
         <button
           data-testid={ `${prefix}button-card-add-item-${id}` }
           type="button"
-          onClick={ () => { if (count > 0) setCount(count - 1); } }
+          onClick={ minus }
           className="btn-minus"
         >
           -
@@ -37,7 +98,7 @@ function ProductCard({ name, id, price, url }) {
         <button
           data-testid={ `${prefix}button-card-rm-item-${id}` }
           type="button"
-          onClick={ () => setCount(count + 1) }
+          onClick={ plus }
           className="btn-plus"
         >
           +

@@ -1,26 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import { getProducts } from '../services/api';
 import '../css/CustomerProducts.css';
+import Context from '../context/Context';
 
 function CustomerProducts() {
   const [products, setProducts] = useState('');
+  const [totalPrice, setTotalPrice] = useState(0);
+  const { productsArray } = useContext(Context);
 
   async function fetchData() {
     const response = await getProducts();
     setProducts(response);
   }
 
+  const sumCar = () => {
+    const ZERO = 0;
+    const total = productsArray.reduce((acc, product) => {
+      if (product.quantity !== 0) {
+        return acc + (Number(product.price) * product.quantity);
+      }
+      return acc;
+    }, ZERO);
+    setTotalPrice(total);
+    return total;
+  };
+
   useEffect(() => {
     fetchData();
-    console.log(JSON.parse(localStorage.getItem('user')));
   }, []);
+
+  useEffect(() => {
+    sumCar();
+  }, [productsArray]);
 
   return (
     <>
       <Header />
-      { console.log(products) }
+      { console.log(productsArray) }
       <section className="main-customer">
         { products && products.map((product) => (
           <ProductCard
@@ -32,6 +50,13 @@ function CustomerProducts() {
           />
         )) }
       </section>
+      <button
+        className="btn-car"
+        type="button"
+        data-testid="customer_products__checkout-bottom-value"
+      >
+        {`Ver Carrinho: R$ ${totalPrice}`}
+      </button>
     </>
   );
 }
