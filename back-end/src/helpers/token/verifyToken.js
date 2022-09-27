@@ -4,7 +4,6 @@ const { CustomError } = require('../error/custom.error');
 
 require('dotenv').config();
 
-
 const verifyToken = (token) => {
   try {
     const decoded = jwt.verify(token, keyJWT || 'secrets');
