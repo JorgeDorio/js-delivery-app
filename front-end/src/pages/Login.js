@@ -34,6 +34,7 @@ function Login() {
       setNotFound(true);
     } else {
       setNotFound(false);
+      localStorage.setItem('user', JSON.stringify(result));
     }
     if (result.role === 'administrator') {
       navigate('/admin/manage');

@@ -1,7 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../css/Header.css';
 
 export default function CostumerLinks() {
+  const { name } = JSON.parse(localStorage.getItem('user'));
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem('user');
+    navigate('/logout');
+  };
+
   return (
     <header className="links-container">
 
@@ -30,14 +40,14 @@ export default function CostumerLinks() {
           className="element-navbar-user-full-name"
         >
           <a href="/profile">
-            Nome do user
+            { name }
           </a>
         </div>
         <div
           data-testid="customer_products__element-navbar-link-logout"
           className="element-navbar-link-logout"
         >
-          <a href="/logout">
+          <a href="/logout" onClick={ logout }>
             Sair
           </a>
         </div>

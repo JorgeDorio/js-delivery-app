@@ -13,6 +13,7 @@ function Router() {
         <Route path="/customer/products" element={ <CustomerProducts /> } />
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
+        <Route path="/logout" element={ <Login /> } />
         <Route path="/" element={ <Login /> } />
       </Routes>
     </BrowserRouter>
