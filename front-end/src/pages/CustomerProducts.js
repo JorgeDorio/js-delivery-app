@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import { getProducts } from '../services/api';
@@ -9,6 +10,7 @@ function CustomerProducts() {
   const [products, setProducts] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
   const { productsArray } = useContext(Context);
+  // const navigate = useNavigate();
 
   async function fetchData() {
     const response = await getProducts();
@@ -54,8 +56,9 @@ function CustomerProducts() {
         className="btn-car"
         type="button"
         data-testid="customer_products__checkout-bottom-value"
+        // onClick={ navigate('/customer/checkout') }
       >
-        {`Ver Carrinho: R$ ${(totalPrice).toFixed(2)}`}
+        {`Ver Carrinho: R$ ${((totalPrice).toFixed(2)).replace('.', ',')}`}
       </button>
     </>
   );
