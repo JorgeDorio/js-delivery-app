@@ -6,7 +6,7 @@ import Context from '../context/Context';
 const prefix = 'customer_products__';
 
 function ProductCard({ name, id, price, url }) {
-  const [count, setCount] = useState('');
+  const [count, setCount] = useState('0');
   const { setProductsArray } = useContext(Context);
 
   const emptyLocalStorage = () => {
@@ -104,7 +104,7 @@ function ProductCard({ name, id, price, url }) {
       <p data-testid={ `${prefix}element-card-title-${id}` }>{name}</p>
       <div className="quantity">
         <button
-          data-testid={ `${prefix}button-card-add-item-${id}` }
+          data-testid={ `${prefix}button-card-rm-item-${id}` }
           type="button"
           onClick={ minus }
           className="btn-minus"
@@ -119,7 +119,7 @@ function ProductCard({ name, id, price, url }) {
           onChange={ (event) => change(event) }
         />
         <button
-          data-testid={ `${prefix}button-card-rm-item-${id}` }
+          data-testid={ `${prefix}button-card-add-item-${id}` }
           type="button"
           onClick={ plus }
           className="btn-plus"

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import { getProducts } from '../services/api';
@@ -8,37 +8,20 @@ import Context from '../context/Context';
 
 function CustomerProducts() {
   const [products, setProducts] = useState('');
-  const [totalPrice, setTotalPrice] = useState(0);
+  // const [totalPrice, setTotalPrice] = useState(0);
   const { productsArray, setProductsArray } = useContext(Context);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   async function fetchData() {
     const response = await getProducts();
     setProducts(response);
   }
 
-  const sumCar = () => {
-    // const ZERO = 0;
-    const total = productsArray.reduce((acc, product) => {
-      if (product.quantity !== 0) {
-        return acc + (Number(product.price) * product.quantity);
-      }
-      return acc;
-    }, 0);
-    setTotalPrice(total);
-    return total;
-  };
-
   useEffect(() => {
     fetchData();
     const getProduct = JSON.parse(localStorage.getItem('carrinho'));
     if (getProduct) setProductsArray(getProduct);
-    sumCar();
   }, []);
-
-  useEffect(() => {
-    sumCar();
-  }, [productsArray]);
 
   return (
     <>
@@ -56,12 +39,21 @@ function CustomerProducts() {
         )) }
       </section>
       <button
+        disabled={ productsArray.length === 0 }
         className="btn-car"
         type="button"
-        data-testid="customer_products__checkout-bottom-value"
-        // onClick={ navigate('/customer/checkout') }
+        data-testid="customer_products__button-cart"
+        onClick={ () => navigate('/customer/checkout') }
       >
-        {`Ver Carrinho: R$ ${((totalPrice).toFixed(2)).replace('.', ',')}`}
+        Ver Carrinho: R$
+        <span data-testid="customer_products__checkout-bottom-value">
+          {((productsArray.reduce((acc, product) => {
+            if (product.quantity !== 0) {
+              return acc + (Number(product.price) * product.quantity);
+            }
+            return acc;
+          }, 0)).toFixed(2)).replace('.', ',')}
+        </span>
       </button>
     </>
   );
