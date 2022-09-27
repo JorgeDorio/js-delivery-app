@@ -9,7 +9,7 @@ import Context from '../context/Context';
 function CustomerProducts() {
   const [products, setProducts] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
-  const { productsArray } = useContext(Context);
+  const { productsArray, setProductsArray } = useContext(Context);
   // const navigate = useNavigate();
 
   async function fetchData() {
@@ -31,6 +31,9 @@ function CustomerProducts() {
 
   useEffect(() => {
     fetchData();
+    const getProduct = JSON.parse(localStorage.getItem('carrinho'));
+    if (getProduct) setProductsArray(getProduct);
+    sumCar();
   }, []);
 
   useEffect(() => {

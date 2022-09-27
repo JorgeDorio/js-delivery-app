@@ -6,7 +6,7 @@ import Context from '../context/Context';
 const prefix = 'customer_products__';
 
 function ProductCard({ name, id, price, url }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState('');
   const { setProductsArray } = useContext(Context);
 
   const emptyLocalStorage = () => {
@@ -17,12 +17,34 @@ function ProductCard({ name, id, price, url }) {
   };
 
   useEffect(() => {
-    localStorage.removeItem('carrinho');
     emptyLocalStorage();
+    const getProduct = JSON.parse(localStorage.getItem('carrinho'));
+    const findById = getProduct.find((product) => product.id === id);
+    if (findById) setCount(findById.quantity);
   }, []);
 
+  const change = (event) => {
+    const object = {
+      id,
+      name,
+      price,
+      url,
+      quantity: Number(event.target.value),
+    };
+    const getProduct = JSON.parse(localStorage.getItem('carrinho'));
+    const findById = getProduct.find((product) => product.id === object.id);
+    if (findById) {
+      findById.quantity = object.quantity;
+    } else {
+      getProduct.push(object);
+      // setCount(object.quantity);
+    }
+    localStorage.setItem('carrinho', JSON.stringify(getProduct));
+    setCount(object.quantity);
+    setProductsArray(getProduct);
+  };
+
   const plus = () => {
-    setCount(count + 1);
     const object = {
       id,
       name,
@@ -31,18 +53,20 @@ function ProductCard({ name, id, price, url }) {
       quantity: 1,
     };
     const getProduct = JSON.parse(localStorage.getItem('carrinho'));
+    // setCount(getProduct.quantity);
     const findById = getProduct.find((product) => product.id === object.id);
     if (findById) {
       findById.quantity += 1;
+      setCount(findById.quantity);
     } else {
       getProduct.push(object);
+      setCount(1);
     }
     localStorage.setItem('carrinho', JSON.stringify(getProduct));
     setProductsArray(getProduct);
   };
 
   const minus = () => {
-    if (count > 0) setCount(count - 1);
     const object = {
       id,
       name,
@@ -52,19 +76,18 @@ function ProductCard({ name, id, price, url }) {
     };
     const getProduct = JSON.parse(localStorage.getItem('carrinho'));
     const findById = getProduct.find((product) => product.id === object.id);
-    if (findById && findById.quantity >= 1) {
+    if (findById.quantity === 1) {
+      setCount(0);
+      const newArray = getProduct.filter((product) => product.id !== id);
+      localStorage.setItem('carrinho', JSON.stringify(newArray));
+      setProductsArray(newArray);
+    }
+    if (findById && findById.quantity > 1) {
       findById.quantity -= 1;
-      console.log(getProduct);
+      setCount(findById.quantity);
       localStorage.setItem('carrinho', JSON.stringify(getProduct));
       setProductsArray(getProduct);
     }
-    // if (findById.quantity === 0) {
-    //   const newArray = getProduct.filter((product) => product.id === object.id);
-    //   // console.log(newArray);
-    //   localStorage.removeItem('productsInCar');
-    //   localStorage.setItem('productsInCar', JSON.stringify(newArray));
-    //   setProductsArray(newArray);
-    // }
   };
 
   return (
@@ -89,11 +112,11 @@ function ProductCard({ name, id, price, url }) {
           -
         </button>
         <input
-          type="number"
+          type="text"
           value={ count }
           data-testid={ `${prefix}input-card-quantity-${id}` }
           min="0"
-          readOnly
+          onChange={ (event) => change(event) }
         />
         <button
           data-testid={ `${prefix}button-card-rm-item-${id}` }
