@@ -34,13 +34,7 @@ function Login() {
       setNotFound(true);
     } else {
       setNotFound(false);
-      const { name, role, token } = result;
-      localStorage.setItem('user', `{
-        'name': '${name}',
-        'email': '${email}',
-        'role': '${role}',
-        'token': '${token}',
-      }`);
+      localStorage.setItem('user', JSON.stringify(result));
     }
     if (result.role === 'administrator') {
       navigate('/admin/manage');
