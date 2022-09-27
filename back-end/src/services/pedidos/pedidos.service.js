@@ -1,4 +1,4 @@
-const { Sale, SaleProduct } = require('../../database/models');
+const { Sale, SaleProduct, Product } = require('../../database/models');
 
 const create = async (body) => {
   const { products } = body;
@@ -36,8 +36,21 @@ const read = async () => {
 };
 
 const readOne = async (id) => {
-  const result = await Sale.findByPk(id);
-  return result;
+  const sales = await Sale.findOne({
+    attributes: ['id', 'totalPrice', 'deliveryAddress', 'deliveryNumber', 'saleDate', 'status'],
+    where: { id },
+  });
+  const getItens = await SaleProduct.findAll({
+    attributes: ['product_id', 'quantity'],
+    where: { saleId: id },
+  });
+  const ids = getItens.map((item) => item.product_id);
+  const getNames = await Product.findAll({ where: { id: ids } });
+  getNames.forEach((item, index) => {
+    item.dataValues.quantity = getItens[index].quantity; // eslint-disable-line no-param-reassign
+  });
+  sales.dataValues.products = getNames;
+  return sales;
 };
 
 const update = async (body, id) => {
