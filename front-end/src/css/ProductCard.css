@@ -1,0 +1,81 @@
+.product-card {
+  background: #eaf1ef;
+  border: 1px solid #b1c2be;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  height: 486px;
+  margin-bottom: 100px;
+  width: 378px;
+}
+
+.product-card h1 {
+  background: rgba(242, 255, 252, 0.75);
+  border-radius: 10px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 42px;
+  margin: 10px auto auto 10px;
+  padding: 10px;
+  position: absolute;
+  text-indent: 9px;
+}
+
+.product-card img {
+  height: 357px;
+  left: 0.28%;
+  right: 0.28%;
+  top: 2px;
+  width: 375.89px;
+}
+
+.product-card p {
+  color: #001813;
+  font-family: Roboto , sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28px;
+  margin: 15px;
+  text-align: center;
+}
+
+.quantity {
+  display: flex;
+  justify-content: center;
+}
+
+.quantity button {
+  align-items: center;
+  background: #036b52;
+  border: none;
+  box-shadow: none;
+  color: #f2fffc;
+  display: flex;
+  font-size: 48px;
+  height: 51.25px;
+  line-height: 56px;
+  width: 55px;
+}
+
+.btn-plus {
+  border-radius: 0 10px 10px 0;
+  text-indent: 9px;
+}
+
+.btn-minus {
+  border-radius: 10px 0 0 10px;
+  text-indent: 16px;
+}
+
+.quantity input {
+  border: 1px solid rgba(0, 24, 19, 1);
+  color: #828282;
+  font-size: 24px;
+  font-weight: 400;
+  height: 47px;
+  line-height: 28px;
+  text-align: center;
+  text-indent: 16px;
+  width: 61.98px;
+}
+

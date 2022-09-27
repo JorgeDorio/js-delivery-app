@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import { getProducts } from '../services/api';
+import '../css/CustomerProducts.css';
 
 function CustomerProducts() {
   const [products, setProducts] = useState('');
@@ -20,16 +21,17 @@ function CustomerProducts() {
     <>
       <Header />
       { console.log(products) }
-      { products && products.map((product) => (
-        <ProductCard
-          key={ product.id }
-          id={ product.id }
-          name={ product.name }
-          url={ product.url_image }
-          price={ product.price }
-        />
-        // <h1 key={ product.id }>Oi</h1>
-      )) }
+      <section className="main-customer">
+        { products && products.map((product) => (
+          <ProductCard
+            key={ product.id }
+            id={ product.id }
+            name={ product.name }
+            url={ product.url_image }
+            price={ product.price }
+          />
+        )) }
+      </section>
     </>
   );
 }
