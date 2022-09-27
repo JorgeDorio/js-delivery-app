@@ -58,13 +58,13 @@ function ProductCard({ name, id, price, url }) {
       localStorage.setItem('productsInCar', JSON.stringify(getProduct));
       setProductsArray(getProduct);
     }
-    if (findById.quantity === 0) {
-      const newArray = getProduct.filter((product) => product.id === object.id);
-      // console.log(newArray);
-      localStorage.removeItem('productsInCar');
-      localStorage.setItem('productsInCar', JSON.stringify(newArray));
-      setProductsArray(newArray);
-    }
+    // if (findById.quantity === 0) {
+    //   const newArray = getProduct.filter((product) => product.id === object.id);
+    //   // console.log(newArray);
+    //   localStorage.removeItem('productsInCar');
+    //   localStorage.setItem('productsInCar', JSON.stringify(newArray));
+    //   setProductsArray(newArray);
+    // }
   };
 
   return (

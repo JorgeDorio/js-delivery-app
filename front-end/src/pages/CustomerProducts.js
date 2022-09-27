@@ -16,13 +16,13 @@ function CustomerProducts() {
   }
 
   const sumCar = () => {
-    const ZERO = 0;
+    // const ZERO = 0;
     const total = productsArray.reduce((acc, product) => {
       if (product.quantity !== 0) {
         return acc + (Number(product.price) * product.quantity);
       }
       return acc;
-    }, ZERO);
+    }, 0);
     setTotalPrice(total);
     return total;
   };
@@ -55,7 +55,7 @@ function CustomerProducts() {
         type="button"
         data-testid="customer_products__checkout-bottom-value"
       >
-        {`Ver Carrinho: R$ ${totalPrice}`}
+        {`Ver Carrinho: R$ ${(totalPrice).toFixed(2)}`}
       </button>
     </>
   );
