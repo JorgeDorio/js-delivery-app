@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import Checkout from './pages/Checkout';
 import CustomerProducts from './pages/CustomerProducts';
 // import Home from './pages/Home';
 import Login from './pages/Login';
@@ -11,6 +12,7 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/customer/products" element={ <CustomerProducts /> } />
+        <Route path="/customer/checkout" element={ <Checkout /> } />
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
         <Route path="/logout" element={ <Login /> } />
