@@ -37,7 +37,9 @@ const ProductsDetails = () => {
         <div>
           <div>
             <p data-testid="customer_order_details__element-order-details-label-order-id">{`PEDIDO: ${data.id}`}</p>
-            <p data-testid="customer_order_details__element-order-details-label-seller-name">{`P. Vend: ${data.sellerName}`}</p>
+            <p data-testid="customer_order_details__element-order-details-label-seller-name">
+              {`P. Vend: ${data.sellerName}`}
+            </p>
             <p data-testid="customer_order_details__element-order-details-label-order-date">{`${data.saleDate}`}</p>
             <p data-testid={`customer_order_details__element-order-details-label-delivery-status${data.id}`}>{`${data.status}`}</p>
             <button data-testid="customer_order_details__button-delivery-check" onClick={() => updateStatus(data.id, 'ENTREGUE')} type='button'>MARCAR COMO ENTREGUE</button>
