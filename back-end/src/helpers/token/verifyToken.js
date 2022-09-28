@@ -1,9 +1,8 @@
 const jwt = require('jsonwebtoken');
+const keyJWT = require('fs').readFileSync('./jwt.evaluation.key', { encoding: 'utf-8' });
 const { CustomError } = require('../error/custom.error');
 
 require('dotenv').config();
-
-const keyJWT = require('fs').readFileSync('./jwt.evaluation.key', { encoding: 'utf-8' });
 
 const verifyToken = (token) => {
   try {

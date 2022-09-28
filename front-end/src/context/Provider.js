@@ -8,6 +8,7 @@ function Provider() {
   const [name, setName] = useState('');
   const [ableBtn, setAbleBtn] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [productsArray, setProductsArray] = useState([]);
 
   const ProviderValue = useMemo(() => (
     {
@@ -21,7 +22,9 @@ function Provider() {
       setAbleBtn,
       notFound,
       setNotFound,
-    }), [email, password, name, ableBtn, notFound]);
+      productsArray,
+      setProductsArray,
+    }), [email, password, name, ableBtn, notFound, productsArray]);
 
   return (
     <Context.Provider value={ ProviderValue }>
