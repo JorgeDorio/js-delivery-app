@@ -27,7 +27,7 @@ function Table() {
             <tr key={ product.id }>
               <td
                 data-testid={
-                  `customer_checkout__element-order-table-item-number-${item + 1}`
+                  `customer_checkout__element-order-table-item-number-${item}`
                 }
               >
                 { item + 1 }
@@ -35,7 +35,7 @@ function Table() {
               </td>
               <td
                 data-testid={
-                  `customer_checkout__element-order-table-name-${item + 1}`
+                  `customer_checkout__element-order-table-name-${item}`
                 }
               >
                 { product.name }
@@ -43,7 +43,7 @@ function Table() {
               </td>
               <td
                 data-testid={
-                  `customer_checkout__element-order-table-quantity-${item + 1}`
+                  `customer_checkout__element-order-table-quantity-${item}`
                 }
               >
                 { product.quantity }
@@ -51,25 +51,26 @@ function Table() {
               </td>
               <td
                 data-testid={
-                  `customer_checkout__element-order-table-unit-price-${item + 1}`
+                  `customer_checkout__element-order-table-unit-price-${item}`
                 }
               >
-                { product.price }
+                { Number(product.price).toFixed(2).replace('.', ',') }
 
               </td>
               <td
                 data-testid={
-                  `customer_checkout__element-order-table-sub-total-${item + 1}`
+                  `customer_checkout__element-order-table-sub-total-${item}`
                 }
               >
-                { product.quantity * product.price }
+                { (Number(product.quantity) * Number(product.price))
+                  .toFixed(2).replace('.', ',') }
 
               </td>
               <td>
                 <button
                   type="button"
                   data-testid={
-                    `customer_checkout__element-order-table-remove-${item + 1}`
+                    `customer_checkout__element-order-table-remove-${item}`
                   }
                 >
                   Remover Item
@@ -84,8 +85,8 @@ function Table() {
           Total:
           <span data-testid="customer_checkout__element-order-total-price">
             {((productsArray.reduce((acc, product) => {
-              if (product.quantity !== 0) {
-                return acc + (Number(product.price) * product.quantity);
+              if (Number(product.quantity) !== 0) {
+                return acc + (Number(product.price) * Number(product.quantity));
               }
               return acc;
             }, 0)).toFixed(2)).replace('.', ',')}

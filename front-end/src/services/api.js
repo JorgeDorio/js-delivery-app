@@ -34,8 +34,19 @@ const getProducts = async () => {
   return response;
 };
 
+const getSellers = async () => {
+  const response = api.get('/users/sellers')
+    .then((returnApiSellers) => {
+      const result = returnApiSellers.data;
+      return result;
+    })
+    .catch(() => false);
+  return response;
+};
+
 export {
   submitLogin,
   createUser,
   getProducts,
+  getSellers,
 };
