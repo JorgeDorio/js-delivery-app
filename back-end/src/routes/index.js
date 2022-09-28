@@ -3,13 +3,16 @@ const { loginRoute } = require('./login/login.routes');
 const { cadastroRoute } = require('./cadastro/register.routes');
 const { productsCustomerRoute } = require('./cliente/products.customer.routes');
 const { admRoute } = require('./adm/adm.routes');
+const orderedsRoute = require('./pedidos/pedidos.routes');
 
 const route = Router();
 
 route.use(loginRoute);
+
 route.use(cadastroRoute);
 route.use(productsCustomerRoute);
 route.use(admRoute);
+route.use(orderedsRoute);
 
 module.exports = {
   route,
