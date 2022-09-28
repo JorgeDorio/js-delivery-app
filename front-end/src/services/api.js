@@ -34,8 +34,29 @@ const getProducts = async () => {
   return response;
 };
 
+const getProductsById = async (id) => {
+  const response = api.get(`/pedidos/${id}`)
+    .then((returnApiProducts) => {
+      const result = returnApiProducts.data;
+      return result;
+    })
+    .catch(() => false);
+  return response;
+};
+
+const updateStatus = (id, status) => {
+  const response = api.patch(`/pedidos/${id}`, { status })
+    .then((returnApiRegister) => {
+      const result = returnApiRegister.data;
+      return result;
+    })
+    .catch(() => false);
+  return response;
+};
 export {
   submitLogin,
   createUser,
   getProducts,
+  getProductsById,
+  updateStatus,
 };
