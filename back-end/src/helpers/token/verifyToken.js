@@ -4,10 +4,15 @@ const { CustomError } = require('../error/custom.error');
 
 require('dotenv').config();
 
-const verifyToken = (token) => {
+const verifyToken = (req, _res, next) => {
+  const { authorization } = req.headers; 
+  if (!authorization) {
+    throw new CustomError(401, 'Token not found')
+  }
   try {
-    const decoded = jwt.verify(token, keyJWT || 'secrets');
-    return decoded;
+    const decoded = jwt.verify(authorization, keyJWT || 'secrets');
+    req.user = decoded;
+    next();
   } catch (error) {
     throw new CustomError(401, 'Token must be a valid token');
   }

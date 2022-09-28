@@ -3,6 +3,7 @@ import { validate } from 'email-validator';
 import Header from '../components/Header';
 import Context from '../context/Context';
 import '../css/AdminManage.css';
+import { admCreateUser } from '../services/api';
 
 function AdminManage() {
   const {
@@ -13,11 +14,13 @@ function AdminManage() {
     ableBtn,
     setAbleBtn,
     notFound,
-    // setNotFound,
+    setNotFound,
   } = useContext(Context);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const message = 'Usuário já cadastrado';
 
   const validateForm = () => {
     const SIX = 6;
@@ -33,6 +36,17 @@ function AdminManage() {
   useEffect(() => {
     validateForm();
   }, [ableBtn, email, password, name, role, notFound]);
+
+  const request = async () => {
+    const result = await admCreateUser(name, email, password, role);
+    console.log(result);
+    if (!result) {
+      setNotFound(true);
+    } else {
+      setNotFound(false);
+    }
+    return result;
+  };
 
   return (
     <>
@@ -103,7 +117,7 @@ function AdminManage() {
           disabled={ ableBtn }
           type="button"
           data-testid="admin_manage__button-register"
-          onClick={ () => console.log('clicou') }
+          onClick={ request }
         >
           CADASTRAR
         </button>
