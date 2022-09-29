@@ -5,6 +5,13 @@ function Table() {
   const { productsArray, setProductsArray } = useContext(Context);
   const products = JSON.parse(localStorage.getItem('carrinho'));
 
+  const removeItem = (id) => {
+    const arrayFiltrado = productsArray.filter((product) => product.id !== id);
+    localStorage.setItem('carrinho', JSON.stringify(arrayFiltrado));
+    setProductsArray(arrayFiltrado);
+  };
+  // console.log(productsArray);
+
   useEffect(() => {
     setProductsArray(products);
   }, []);
@@ -69,6 +76,7 @@ function Table() {
               <td>
                 <button
                   type="button"
+                  onClick={ () => removeItem(product.id) }
                   data-testid={
                     `customer_checkout__element-order-table-remove-${item}`
                   }
