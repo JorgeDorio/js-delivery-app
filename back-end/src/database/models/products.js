@@ -16,13 +16,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
-    url_image: {
+    urlImage: {
       type: DataTypes.STRING,
       allowNull: false,
     }
   }, {
     tableName: 'products',
     timestamps: false,
+    underscored: true
   });
 
   return Products;
