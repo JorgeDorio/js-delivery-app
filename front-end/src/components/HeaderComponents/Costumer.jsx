@@ -20,7 +20,7 @@ export default function CostumerLinks() {
           data-testid="customer_products__element-navbar-link-products"
           className="element-navbar-link-products"
         >
-          <a href="/costumer/products">
+          <a href="/customer/products">
             Produtos
           </a>
         </div>
@@ -28,7 +28,7 @@ export default function CostumerLinks() {
           data-testid="customer_products__element-navbar-link-orders"
           className="element-navbar-link-orders"
         >
-          <a href="/costumer/orders">
+          <a href="/customer/orders">
             Meus pedidos
           </a>
         </div>
