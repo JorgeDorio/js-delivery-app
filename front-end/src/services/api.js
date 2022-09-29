@@ -44,6 +44,16 @@ const getSellers = async () => {
   return response;
 };
 
+const getProductsById = async (id) => {
+  const response = api.get(`/pedidos/${id}`)
+    .then((returnApiProducts) => {
+      const result = returnApiProducts.data;
+      return result;
+    })
+    .catch(() => false);
+  return response;
+};
+
 const admCreateUser = async (name, email, password, role) => {
   const userInfos = JSON.parse(localStorage.getItem('user'));
   console.log(userInfos.token);
@@ -60,12 +70,33 @@ const admCreateUser = async (name, email, password, role) => {
   return response;
 };
 
-// commit para mergear
+const updateStatus = (id, status) => {
+  const response = api.patch(`/pedidos/${id}`, { status })
+    .then((returnApiRegister) => {
+      const result = returnApiRegister.data;
+      return result;
+    })
+    .catch(() => false);
+  return response;
+};
+
+const getCustomerOrders = (id) => {
+  const response = api.get(`/pedidos/c/${id}`)
+    .then((returnApiProducts) => {
+      const result = returnApiProducts.data;
+      return result;
+    })
+    .catch(() => false);
+  return response;
+};
 
 export {
   submitLogin,
   createUser,
   getProducts,
   getSellers,
+  getProductsById,
+  updateStatus,
+  getCustomerOrders,
   admCreateUser,
 };
