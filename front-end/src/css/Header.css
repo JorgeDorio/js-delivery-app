@@ -26,6 +26,16 @@ header {
   display: flex;
 }
 
+.element-navbar-link-products {
+  align-items: center;
+  background: var(--secundary-color);
+  color: var(--dark-text);
+  display: flex;
+  height: 105px;
+  justify-content: center;
+  width: 367px;
+}
+
 .element-navbar-link-logout {
   align-items: center;
   background-color: var(--quaternary-color);
@@ -44,7 +54,7 @@ header {
   width: 359px;
 }
 
-.element-navbar-link-products, .element-navbar-link-orders {
+.element-navbar-link-orders {
   align-items: center;
   background: var(--primary-color);
   display: flex;

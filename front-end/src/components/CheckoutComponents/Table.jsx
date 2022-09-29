@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Context from '../../context/Context';
+import '../../css/Table.css';
 
 function Table() {
   const { productsArray, setProductsArray } = useContext(Context);
@@ -10,12 +11,12 @@ function Table() {
   }, []);
   // console.log(productsArray);
   return (
-    <>
+    <section className="sect">
       <table>
         <thead>
           <tr>
             <th>Item</th>
-            <th>Descricação</th>
+            <th>Descrição</th>
             <th>Quantidade</th>
             <th>Valor Unitário</th>
             <th>Sub-total</th>
@@ -24,8 +25,12 @@ function Table() {
         </thead>
         <tbody>
           { products.map((product, item) => (
-            <tr key={ product.id }>
+            <tr
+              className="cartp"
+              key={ product.id }
+            >
               <td
+                className="item"
                 data-testid={
                   `customer_checkout__element-order-table-item-number-${item + 1}`
                 }
@@ -34,6 +39,7 @@ function Table() {
 
               </td>
               <td
+                className="desc"
                 data-testid={
                   `customer_checkout__element-order-table-name-${item + 1}`
                 }
@@ -42,6 +48,7 @@ function Table() {
 
               </td>
               <td
+                className="qty"
                 data-testid={
                   `customer_checkout__element-order-table-quantity-${item + 1}`
                 }
@@ -50,38 +57,41 @@ function Table() {
 
               </td>
               <td
+                className="vu"
                 data-testid={
                   `customer_checkout__element-order-table-unit-price-${item + 1}`
                 }
               >
+                R$
                 { product.price }
 
               </td>
               <td
+                className="sb"
                 data-testid={
                   `customer_checkout__element-order-table-sub-total-${item + 1}`
                 }
               >
-                { product.quantity * product.price }
+                R$
+                { (product.quantity * product.price).toFixed(2) }
 
               </td>
-              <td>
-                <button
-                  type="button"
-                  data-testid={
-                    `customer_checkout__element-order-table-remove-${item + 1}`
-                  }
-                >
-                  Remover Item
-                </button>
+              <td
+                className="btnr"
+                type="button"
+                data-testid={
+                  `customer_checkout__element-order-table-remove-${item + 1}`
+                }
+              >
+                Remover
               </td>
             </tr>
           )) }
         </tbody>
       </table>
-      <div>
+      <div className="total-price">
         <h1>
-          Total:
+          Total: R$
           <span data-testid="customer_checkout__element-order-total-price">
             {((productsArray.reduce((acc, product) => {
               if (product.quantity !== 0) {
@@ -92,7 +102,7 @@ function Table() {
           </span>
         </h1>
       </div>
-    </>
+    </section>
   );
 }
 
