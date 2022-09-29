@@ -26,9 +26,9 @@ function CustomerProducts() {
   return (
     <>
       <Header />
-      { console.log(productsArray) }
+      {console.log(productsArray)}
       <section className="main-customer">
-        { products && products.map((product) => (
+        {products && products.map((product) => (
           <ProductCard
             key={ product.id }
             id={ product.id }
@@ -36,7 +36,7 @@ function CustomerProducts() {
             url={ product.url_image }
             price={ product.price }
           />
-        )) }
+        ))}
       </section>
       <button
         disabled={ productsArray.length === 0 }
