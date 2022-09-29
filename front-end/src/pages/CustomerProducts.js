@@ -17,6 +17,7 @@ function CustomerProducts() {
   }
 
   useEffect(() => {
+    console.log(products);
     fetchData();
     const getProduct = JSON.parse(localStorage.getItem('carrinho'));
     if (getProduct) setProductsArray(getProduct);
@@ -31,7 +32,7 @@ function CustomerProducts() {
             key={ product.id }
             id={ product.id }
             name={ product.name }
-            url={ product.url_image }
+            url={ product.urlImage }
             price={ product.price }
           />
         ))}
