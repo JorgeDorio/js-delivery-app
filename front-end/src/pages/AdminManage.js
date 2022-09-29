@@ -50,10 +50,6 @@ function AdminManage() {
 
   return (
     <>
-      {console.log(name)}
-      {console.log(email)}
-      {console.log(password)}
-      {console.log(role)}
       <Header />
       <h1 className="adm-title">Cadastrar novo usuário</h1>
       {!notFound ? (

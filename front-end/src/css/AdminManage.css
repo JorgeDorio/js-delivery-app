@@ -3,7 +3,17 @@
   font-size: 36px;
   font-weight: 500;
   line-height: 42px;
+  margin-bottom: 0;
   margin-left: 125px;
+}
+
+.error-msg {
+  color: rgb(135, 135, 135, 1);
+  font-size: 12px;
+  left: 45%;
+  line-height: 14.06px;
+  position: absolute;
+  top: 16%;
 }
 
 .form-adm {
@@ -12,9 +22,9 @@
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   display: flex;
   flex-wrap: wrap;
-  height: 146.98px;
   justify-content: space-around;
   margin: auto;
+  min-height: 130.98px;
   width: 80%;
 }
 
@@ -29,6 +39,7 @@
   border: 1px solid #001813;
   border-radius: 5px;
   height: 50px;
+  margin-bottom: 40px;
   width: 200px;
 }
 
