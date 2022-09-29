@@ -7,7 +7,7 @@ const { verifyToken } = require('../../helpers/token/verifyToken');
 
 const admRoute = Router();
 
-admRoute.post('/admin/manage', verifyToken, validationRegister, postAdmController);
+admRoute.post('/manage', verifyToken, validationRegister, postAdmController);
 
 module.exports = {
   admRoute,

@@ -10,6 +10,7 @@ function Provider() {
   const [ableBtn, setAbleBtn] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [productsArray, setProductsArray] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const ProviderValue = useMemo(() => (
     {
@@ -27,6 +28,8 @@ function Provider() {
       setNotFound,
       productsArray,
       setProductsArray,
+      totalPrice,
+      setTotalPrice,
     }), [email, password, name, role, ableBtn, notFound, productsArray]);
 
   return (

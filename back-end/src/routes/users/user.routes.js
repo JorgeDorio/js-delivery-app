@@ -3,7 +3,7 @@ const { getAllUsersController } = require('../../controllers/users/getAllUsersCo
 
 const userRoute = Router();
 
-userRoute.get('/users/sellers', getAllUsersController);
+userRoute.get('/sellers', getAllUsersController);
 
 module.exports = {
   userRoute,

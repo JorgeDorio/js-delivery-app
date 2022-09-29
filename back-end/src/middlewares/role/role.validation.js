@@ -1,8 +1,8 @@
-const { verifyToken } = require('../../helpers/token/verifyToken');
+const { translateToken } = require('../../helpers/token/translateToken');
 
 const isSeller = (req, res, next) => {
-  const { token } = req.headers;
-  const { role } = verifyToken(token);
+  const { authorization } = req.headers;
+  const { role } = translateToken(authorization);
   if (role !== 'seller') {
     return res.status(401).json({ message: 'Acesso negado.' });
   }

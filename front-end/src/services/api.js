@@ -90,6 +90,16 @@ const getCustomerOrders = (id) => {
   return response;
 };
 
+const createOrder = async (body) => {
+  const response = api.post('/pedidos', body)
+    .then((returnApiRegister) => {
+      const result = returnApiRegister.data;
+      return result;
+    })
+    .catch(() => false);
+  return response;
+};
+
 export {
   submitLogin,
   createUser,
@@ -99,4 +109,5 @@ export {
   updateStatus,
   getCustomerOrders,
   admCreateUser,
+  createOrder,
 };

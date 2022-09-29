@@ -10,12 +10,10 @@ const loginUserService = async (userObj) => {
   const hashPassword = md5(password);
   const passwordValid = userLogin.password === hashPassword;
   if (!passwordValid) throw new CustomError(404, 'Password not valid');
-  const token = generateToken({
-    email,
-    hashPassword,
-    role: userLogin.role,
+  const token = generateToken({ email, hashPassword, role: userLogin.role,
   });
   const userPersonalite = {
+    id: userLogin.id,
     name: userLogin.name,
     email,
     role: userLogin.role,
