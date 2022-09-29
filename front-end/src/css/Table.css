@@ -1,0 +1,132 @@
+body {
+  color: white;
+  font-family: Roboto , sans-serif;
+}
+
+:root {
+
+  --primary-color: #036b52;
+
+  --secundary-color: #2fc18c;
+
+  --tertiary-color: #421981;
+
+  --quaternary-color: #056cf9;
+
+  --light-text: white;
+
+  --dark-text: black;
+}
+
+.sect {
+  align-items: center;
+  background-color: #fbfffe;
+  border: #b1c2be;
+  border-radius: 4px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  height: 469px;
+  justify-content: baseline;
+  margin: auto;
+  width: 80%;
+}
+
+/* colocando css só na tag TH dentro de sect */
+.sect th {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+/* .cartp {
+  border-spacing: 10px;
+} */
+
+table {
+  background-color: var(--light-text);
+  border-spacing: 0 10px;
+  color: var(--dark-text);
+  margin: 2em;
+}
+
+.item {
+  background-color: var(--secundary-color);
+  border-bottom-left-radius: 0.2em;
+  border-top-left-radius: 0.2em;
+  font-size: 36px;
+  font-weight: 500;
+  height: 65px;
+  line-height: 42px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 90px;
+}
+
+.desc {
+  background: #eaf1ef;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 42px;
+  text-indent: 10px;
+  width: 40%;
+}
+
+.qty {
+  background-color: var(--primary-color);
+  border: none;
+  color: #f2fffc;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 42px;
+  text-align: center;
+  width: 150px;
+}
+
+.vu {
+  background-color: var(--tertiary-color);
+  color: var(--light-text);
+  font-size: 36px;
+  font-weight: 500;
+  text-align: center;
+  width: 150px;
+}
+
+.sb {
+  background-color: var(--quaternary-color);
+  color: var(--light-text);
+  font-size: 36px;
+  font-weight: 500;
+  text-align: center;
+  width: 150px;
+}
+
+.btnr {
+  background-color: var(--secundary-color);
+  border: none;
+  border-radius: 0 0.2em 0.2em 0;
+  border-spacing: 0;
+  color: var(--light-text);
+  font-size: 36px;
+  font-weight: 500;
+  height: 65px;
+  text-align: center;
+  width: 200px;
+}
+
+.total-price {
+  align-items: center;
+  background-color: #036b52;
+  border: none;
+  border-radius: 10px;
+  color: #f2fffc;
+  display: flex;
+  float: right;
+  font-size: 25px;
+  font-weight: 700;
+  height: 80px;
+  justify-content: center;
+  margin-left: 68%;
+  text-align: center;
+  width: 330px;
+}
