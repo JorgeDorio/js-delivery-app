@@ -17,7 +17,7 @@ function CustomerProducts() {
   }
 
   useEffect(() => {
-    console.log(products);
+    // console.log(products);
     fetchData();
     const getProduct = JSON.parse(localStorage.getItem('carrinho'));
     if (getProduct) setProductsArray(getProduct);
