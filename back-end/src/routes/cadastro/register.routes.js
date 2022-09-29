@@ -6,7 +6,7 @@ const {
 
 const cadastroRoute = Router();
 
-cadastroRoute.post('/register', validationRegister, postRegisterController);
+cadastroRoute.post('/', validationRegister, postRegisterController);
 
 module.exports = {
   cadastroRoute,

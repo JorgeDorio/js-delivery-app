@@ -29,7 +29,6 @@ function Login() {
 
   const request = async () => {
     const result = await submitLogin(email, password);
-    console.log(result);
     if (!result) {
       setNotFound(true);
     } else {
