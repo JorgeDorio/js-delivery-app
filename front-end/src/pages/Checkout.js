@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import '../css/Checkout.css';
 import DetalhesEnderecos from '../components/CheckoutComponents/DetalhesEnderecos';
 
-
 function Checkout() {
   return (
     <>

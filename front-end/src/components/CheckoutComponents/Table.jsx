@@ -11,7 +11,6 @@ function Table() {
     localStorage.setItem('carrinho', JSON.stringify(arrayFiltrado));
     setProductsArray(arrayFiltrado);
   };
-  // console.log(productsArray);
 
   useEffect(() => {
     setProductsArray(products);
@@ -39,7 +38,7 @@ function Table() {
               <td
                 className="item"
                 data-testid={
-                  `customer_checkout__element-order-table-item-number-${item}`
+                  `customer_checkout__element-order-table-item-number-${item + 1}`
                 }
               >
                 { item + 1 }
@@ -48,7 +47,7 @@ function Table() {
               <td
                 className="desc"
                 data-testid={
-                  `customer_checkout__element-order-table-name-${item}`
+                  `customer_checkout__element-order-table-name-${item + 1}`
                 }
               >
                 { product.name }
@@ -57,7 +56,7 @@ function Table() {
               <td
                 className="qty"
                 data-testid={
-                  `customer_checkout__element-order-table-quantity-${item}`
+                  `customer_checkout__element-order-table-quantity-${item + 1}`
                 }
               >
                 { product.quantity }
@@ -66,31 +65,34 @@ function Table() {
               <td
                 className="vu"
                 data-testid={
-                  `customer_checkout__element-order-table-unit-price-${item}`
+                  `customer_checkout__element-order-table-unit-price-${item + 1}`
                 }
               >
                 R$
-                { Number(product.price).toFixed(2).replace('.', ',') }
+                { product.price }
+
               </td>
               <td
                 className="sb"
                 data-testid={
-                  `customer_checkout__element-order-table-sub-total-${item}`
+                  `customer_checkout__element-order-table-sub-total-${item + 1}`
                 }
               >
                 R$
-                { (Number(product.quantity) * Number(product.price))
-                  .toFixed(2).replace('.', ',') }
+                { (product.quantity * product.price).toFixed(2) }
+
               </td>
-              <td
-                className="btnr"
-                type="button"
-                onClick={ () => removeItem(product.id) }
-                data-testid={
-                  `customer_checkout__element-order-table-remove-${item + 1}`
-                }
-              >
-                Remover
+              <td>
+                <button
+                  className="btnr"
+                  type="button"
+                  onClick={ () => removeItem(product.id) }
+                  data-testid={
+                    `customer_checkout__element-order-table-remove-${item + 1}`
+                  }
+                >
+                  Remover
+                </button>
               </td>
             </tr>
           )) }
@@ -101,8 +103,8 @@ function Table() {
           Total: R$
           <span data-testid="customer_checkout__element-order-total-price">
             {((productsArray.reduce((acc, product) => {
-              if (Number(product.quantity) !== 0) {
-                return acc + (Number(product.price) * Number(product.quantity));
+              if (product.quantity !== 0) {
+                return acc + (Number(product.price) * product.quantity);
               }
               return acc;
             }, 0)).toFixed(2)).replace('.', ',')}
