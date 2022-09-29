@@ -52,6 +52,13 @@ const admCreateUser = async (name, email, password, role) => {
     { name, email, password, role },
     { headers: { authorization: userInfos.token } },
   )
+    .then((returnApiRegister) => {
+      const result = returnApiRegister.data;
+      return result;
+    })
+    .catch(() => false);
+  return response;
+};
 
 const updateStatus = (id, status) => {
   const response = api.patch(`/pedidos/${id}`, { status })
