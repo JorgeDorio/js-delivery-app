@@ -4,7 +4,7 @@ const { loginUserController } = require('../../controllers/login/postLoginContro
 
 const loginRoute = Router();
 
-loginRoute.post('/login', validationLogin, loginUserController);
+loginRoute.post('/', validationLogin, loginUserController);
 
 module.exports = {
   loginRoute,

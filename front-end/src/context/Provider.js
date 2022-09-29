@@ -6,9 +6,11 @@ function Provider() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [role, setRole] = useState('seller');
   const [ableBtn, setAbleBtn] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [productsArray, setProductsArray] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const ProviderValue = useMemo(() => (
     {
@@ -18,13 +20,17 @@ function Provider() {
       setPassword,
       name,
       setName,
+      role,
+      setRole,
       ableBtn,
       setAbleBtn,
       notFound,
       setNotFound,
       productsArray,
       setProductsArray,
-    }), [email, password, name, ableBtn, notFound, productsArray]);
+      totalPrice,
+      setTotalPrice,
+    }), [email, password, name, role, ableBtn, notFound, productsArray]);
 
   return (
     <Context.Provider value={ ProviderValue }>

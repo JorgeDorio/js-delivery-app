@@ -5,7 +5,7 @@ const {
 
 const productsCustomerRoute = Router();
 
-productsCustomerRoute.get('/customer/products', getAllProductsController);
+productsCustomerRoute.get('/products', getAllProductsController);
 
 module.exports = {
   productsCustomerRoute,

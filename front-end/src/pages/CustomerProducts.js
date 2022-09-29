@@ -8,7 +8,6 @@ import Context from '../context/Context';
 
 function CustomerProducts() {
   const [products, setProducts] = useState('');
-  // const [totalPrice, setTotalPrice] = useState(0);
   const { productsArray, setProductsArray } = useContext(Context);
   const navigate = useNavigate();
 
@@ -18,6 +17,7 @@ function CustomerProducts() {
   }
 
   useEffect(() => {
+    // console.log(products);
     fetchData();
     const getProduct = JSON.parse(localStorage.getItem('carrinho'));
     if (getProduct) setProductsArray(getProduct);
@@ -26,17 +26,16 @@ function CustomerProducts() {
   return (
     <>
       <Header />
-      { console.log(productsArray) }
       <section className="main-customer">
-        { products && products.map((product) => (
+        {products && products.map((product) => (
           <ProductCard
             key={ product.id }
             id={ product.id }
             name={ product.name }
-            url={ product.url_image }
+            url={ product.urlImage }
             price={ product.price }
           />
-        )) }
+        ))}
       </section>
       <button
         disabled={ productsArray.length === 0 }

@@ -2,6 +2,8 @@ import React from 'react';
 import Table from '../components/CheckoutComponents/Table';
 import Header from '../components/Header';
 import '../css/Checkout.css';
+import DetalhesEnderecos from '../components/CheckoutComponents/DetalhesEnderecos';
+
 
 function Checkout() {
   return (
@@ -9,13 +11,11 @@ function Checkout() {
       <Header />
       <h1 className="check-title">Finalizar Pedido</h1>
       <Table />
-      <h1
-        className="fp"
-      >
-        Finalizar Pedido
-      </h1>
+      <section>
+        <h1>Detalhes e Endereço para Entrega</h1>
+        <DetalhesEnderecos />
+      </section>
     </>
-
   );
 }
 
