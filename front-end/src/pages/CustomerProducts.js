@@ -8,7 +8,6 @@ import Context from '../context/Context';
 
 function CustomerProducts() {
   const [products, setProducts] = useState('');
-  // const [totalPrice, setTotalPrice] = useState(0);
   const { productsArray, setProductsArray } = useContext(Context);
   const navigate = useNavigate();
 
@@ -26,7 +25,6 @@ function CustomerProducts() {
   return (
     <>
       <Header />
-      {console.log(productsArray)}
       <section className="main-customer">
         {products && products.map((product) => (
           <ProductCard
