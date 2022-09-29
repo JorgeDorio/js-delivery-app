@@ -53,10 +53,22 @@ const updateStatus = (id, status) => {
     .catch(() => false);
   return response;
 };
+
+const getCustomerOrders = (id) => {
+  const response = api.get(`/pedidos/c/${id}`)
+    .then((returnApiProducts) => {
+      const result = returnApiProducts.data;
+      return result;
+    })
+    .catch(() => false);
+  return response;
+};
+
 export {
   submitLogin,
   createUser,
   getProducts,
   getProductsById,
   updateStatus,
+  getCustomerOrders,
 };

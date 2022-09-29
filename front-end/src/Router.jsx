@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import CustomerProducts from './pages/CustomerProducts';
+import MyOrders from './pages/MyOrders';
 // import Home from './pages/Home';
 import Login from './pages/Login';
-import ProductsDetails from './pages/ProductsDetails'
+import ProductsDetails from './pages/ProductsDetails';
 
 import Register from './pages/Register';
 
@@ -11,12 +12,13 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/details/:id" element={<ProductsDetails />} />
-        <Route path="/customer/products" element={<CustomerProducts />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/logout" element={<Login />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/details/:id" element={ <ProductsDetails /> } />
+        <Route path="/:role/orders/:id" element={ <MyOrders /> } />
+        <Route path="/customer/products" element={ <CustomerProducts /> } />
+        <Route path="/login" element={ <Login /> } />
+        <Route path="/register" element={ <Register /> } />
+        <Route path="/logout" element={ <Login /> } />
+        <Route path="/" element={ <Login /> } />
       </Routes>
     </BrowserRouter>
   );

@@ -14,7 +14,7 @@ const readCustomer = async (id) => {
       attributes: [
         'id', 'userId', 'sellerId',
         'totalPrice', 'saleDate',
-        'deliveryAddress', 'deliveryNumber',
+        'deliveryAddress', 'deliveryNumber', 'status',
       ],
       where: { userId: id },
     },
