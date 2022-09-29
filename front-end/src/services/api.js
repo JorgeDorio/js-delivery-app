@@ -44,6 +44,15 @@ const getProductsById = async (id) => {
   return response;
 };
 
+const admCreateUser = async (name, email, password, role) => {
+  const userInfos = JSON.parse(localStorage.getItem('user'));
+  console.log(userInfos.token);
+  const response = api.post(
+    '/admin/manage',
+    { name, email, password, role },
+    { headers: { authorization: userInfos.token } },
+  )
+
 const updateStatus = (id, status) => {
   const response = api.patch(`/pedidos/${id}`, { status })
     .then((returnApiRegister) => {
@@ -71,4 +80,5 @@ export {
   getProductsById,
   updateStatus,
   getCustomerOrders,
+  admCreateUser,
 };
