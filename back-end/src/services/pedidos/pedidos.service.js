@@ -48,11 +48,10 @@ const readOne = async (id) => {
   });
   const ids = getItens.map((item) => item.product_id);
   const getNames = await Product.findAll({ where: { id: ids } });
-  getNames.forEach((item, index) => {
-    item.dataValues.quantity = getItens[index].quantity; // eslint-disable-line no-param-reassign
-  });
+  const a = getNames.map((item, index) => (
+    { ...item.dataValues, quantity: getItens[index].quantity })); // eslint-disable-line no-param-reassign
   sales.dataValues.sellerName = seller.name;
-  sales.dataValues.products = getNames;
+  sales.dataValues.products = a;
   return sales;
 };
 
