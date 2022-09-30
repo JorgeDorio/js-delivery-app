@@ -7,7 +7,7 @@ function OrderCard({ id, status, date, totalPrice, address, role }) {
   const navigate = useNavigate();
 
   return (
-    <button type="button" onClick={ () => navigate(`/customer/orders/${id}`) }>
+    <button type="button" onClick={ () => navigate(`/${role}/orders/${id}`) }>
       <div data-testid={ `${prefix}-order-id-${id}` }>
         Pedido
         <br />
