@@ -6,6 +6,7 @@ import { getCustomerOrders } from '../services/api';
 function MyOrders() {
   const [data, setData] = useState();
   const [address, setAddress] = useState();
+  console.log('commit');
   const getData = async (id) => {
     const request = await getCustomerOrders(id);
     setData(request);
