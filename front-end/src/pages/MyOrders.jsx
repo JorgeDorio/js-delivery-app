@@ -20,7 +20,7 @@ function MyOrders() {
   };
 
   useEffect(() => {
-    const id = window.location.pathname.split('/')[3];
+    const { id } = JSON.parse(localStorage.getItem('user'));
     setAddress(window.location.pathname.split('/')[1] !== 'customer');
     getData(id);
   }, []);

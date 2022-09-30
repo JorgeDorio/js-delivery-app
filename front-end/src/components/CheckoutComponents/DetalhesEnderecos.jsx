@@ -42,7 +42,7 @@ function DetalhesEnderecos() {
       sellerId: id,
       totalPrice,
       saleDate,
-      status: 'PENDENTE',
+      status: 'Pendente',
       products: cart,
       deliveryNumber: number,
       deliveryAddress: address,

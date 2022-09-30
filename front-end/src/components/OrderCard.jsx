@@ -3,27 +3,28 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function OrderCard({ id, status, date, totalPrice, address, role }) {
+  const prefix = `${role}_orders__element`;
   const navigate = useNavigate();
 
   return (
     <button type="button" onClick={ () => navigate(`/customer/details/${id}}`) }>
-      <div data-testid={ `${role}_orders__element-order-id-${id}` }>
+      <div data-testid={ `${prefix}-order-id-${id}` }>
         Pedido
         <br />
         {id}
       </div>
-      <p data-testid={ `${role}_orders__element-delivery-status-${id}` }>
+      <p data-testid={ `${prefix}-delivery-status-${id}` }>
         {status}
       </p>
-      <p data-testid={ `${role}_orders__element-order-date-${id}` }>{date}</p>
+      <p data-testid={ `${prefix}-order-date-${id}` }>{date}</p>
       <p
-        data-testid={ `${role}_orders__element-card-price-${id}` }
+        data-testid={ `${prefix}-card-price-${id}` }
       >
         {`R$ ${totalPrice}`}
 
       </p>
       <p
-        data-testid={ `seller_orders__element-card-address-${id}` }
+        data-testid={ `${prefix}-card-address-${id}` }
       >
         {`${address}`}
 
