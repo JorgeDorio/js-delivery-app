@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { getProductsById, updateStatus } from '../services/api';
 
-const prefix = 'customer_order_details__element-order';
-
 function ProductsDetails() {
   const [data, setData] = useState({});
   const [products, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const role = window.location.pathname.split('/')[1];
+  const prefix = `${role}_order_details__element-order`;
 
   const getTotalPrice = (data_) => {
     const prices = data_.map((item) => item.price * item.quantity);
