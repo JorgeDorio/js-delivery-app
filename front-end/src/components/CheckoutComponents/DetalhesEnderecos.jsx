@@ -48,7 +48,7 @@ function DetalhesEnderecos() {
       deliveryAddress: address,
     };
     const order = await createOrder(body);
-    navigate(`/customer/details/${order.id}`);
+    navigate(`/customer/orders/${order.id}`);
   };
 
   useEffect(() => {

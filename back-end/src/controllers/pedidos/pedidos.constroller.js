@@ -3,7 +3,7 @@ const service = require('../../services/pedidos/pedidos.service');
 const create = async (req, res) => {
   const { body } = req;
   const result = await service.create(body);
-  return res.status(200).json(result);
+  return res.status(201).json(result);
 };
 
 const readByCustomer = async (req, res) => {

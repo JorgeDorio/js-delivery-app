@@ -14,7 +14,7 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/customer/details/:id" element={ <ProductsDetails /> } />
+        <Route path="/customer/orders/:id" element={ <ProductsDetails /> } />
         <Route path="/:role/orders/:id" element={ <MyOrders /> } />
         <Route path="/admin/manage" element={ <AdminManage /> } />
         <Route path="/customer/products" element={ <CustomerProducts /> } />
