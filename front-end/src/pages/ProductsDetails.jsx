@@ -17,7 +17,6 @@ function ProductsDetails() {
 
   const getData = async (id) => {
     const request = await getProductsById(id);
-    console.log(request);
     const date = request.saleDate.split('-');
     date[2] = date[2].slice(0, 2);
     request.saleDate = `${date[2]}/${date[1]}/${date[0]}`;
