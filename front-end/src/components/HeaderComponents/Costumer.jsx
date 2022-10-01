@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../css/Header.css';
 
 export default function CostumerLinks() {
+  useEffect(() => {
+    JSON.parse(localStorage.getItem('user'));
+  }, []);
   const { name } = JSON.parse(localStorage.getItem('user'));
 
   const navigate = useNavigate();

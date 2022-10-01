@@ -69,7 +69,7 @@ function ProductsDetails() {
                   <span
                     data-testid={ `${prefix}-table-item-number-${item.id}` }
                   >
-                    {index + 2}
+                    {index + 1}
                   </span>
                   <span
                     data-testid={ `${prefix}-table-name-${item.id}` }
@@ -94,7 +94,10 @@ function ProductsDetails() {
                 </div>
               ))}
           </div>
-          <h1 data-testid={ `${prefix}-total-price` }>{`Total: R$ ${totalPrice}`}</h1>
+          <h1 data-testid={ `${prefix}-total-price` }>
+            {`${Number(totalPrice)
+              .toFixed(2).replace('.', ',')}`}
+          </h1>
         </div>
       </main>
     </div>

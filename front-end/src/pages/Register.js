@@ -42,6 +42,7 @@ function Register() {
       setNotFound(true);
     } else {
       setNotFound(false);
+      localStorage.setItem('user', JSON.stringify(result));
       navigate('/customer/products');
       // navigate('/login');
     //   Esperado: "http://localhost:3000/customer/products"
