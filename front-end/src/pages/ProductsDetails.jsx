@@ -57,6 +57,7 @@ function ProductsDetails() {
               data-testid="customer_order_details__button-delivery-check"
               onClick={ () => updateStatus(data.id, 'ENTREGUE') }
               type="button"
+              disabled
             >
               MARCAR COMO ENTREGUE
             </button>
