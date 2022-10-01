@@ -42,8 +42,8 @@ function Register() {
       setNotFound(true);
     } else {
       setNotFound(false);
-      // navigate('/customer/products');
-      navigate('/login');
+      navigate('/customer/products');
+      // navigate('/login');
     //   Esperado: "http://localhost:3000/customer/products"
     // Recebido: "http://localhost:3000/login"
     }
