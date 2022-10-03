@@ -49,6 +49,16 @@ function Login() {
 
   useEffect(() => {
     navigate('/login');
+    const userInfos = JSON.parse(localStorage.getItem('user'));
+    if (userInfos === null) {
+      navigate('/login');
+    } else if (userInfos.role === 'administrator') {
+      navigate('/admin/manage');
+    } else if (userInfos.role === 'customer') {
+      navigate('/customer/products');
+    } else if (userInfos.role === 'seller') {
+      navigate('/seller/orders');
+    }
   }, []);
 
   useEffect(() => {

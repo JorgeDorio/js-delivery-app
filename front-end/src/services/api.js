@@ -56,7 +56,6 @@ const getProductsById = async (id) => {
 
 const admCreateUser = async (name, email, password, role) => {
   const userInfos = JSON.parse(localStorage.getItem('user'));
-  console.log(userInfos.token);
   const response = api.post(
     '/admin/manage',
     { name, email, password, role },
@@ -91,7 +90,13 @@ const getCustomerOrders = (id) => {
 };
 
 const createOrder = async (body) => {
-  const response = api.post('/pedidos', body)
+  const userInfos = JSON.parse(localStorage.getItem('user'));
+  console.log(userInfos);
+  const response = api.post(
+    '/pedidos',
+    body,
+    { headers: { authorization: userInfos.token } },
+  )
     .then((returnApiRegister) => {
       const result = returnApiRegister.data;
       return result;

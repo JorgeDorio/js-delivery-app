@@ -38,7 +38,7 @@ function Table() {
               <td
                 className="item"
                 data-testid={
-                  `customer_checkout__element-order-table-item-number-${item + 1}`
+                  `customer_checkout__element-order-table-item-number-${item}`
                 }
               >
                 { item + 1 }
@@ -47,7 +47,7 @@ function Table() {
               <td
                 className="desc"
                 data-testid={
-                  `customer_checkout__element-order-table-name-${item + 1}`
+                  `customer_checkout__element-order-table-name-${item}`
                 }
               >
                 { product.name }
@@ -56,7 +56,7 @@ function Table() {
               <td
                 className="qty"
                 data-testid={
-                  `customer_checkout__element-order-table-quantity-${item + 1}`
+                  `customer_checkout__element-order-table-quantity-${item}`
                 }
               >
                 { product.quantity }
@@ -65,31 +65,30 @@ function Table() {
               <td
                 className="vu"
                 data-testid={
-                  `customer_checkout__element-order-table-unit-price-${item + 1}`
+                  `customer_checkout__element-order-table-unit-price-${item}`
                 }
               >
-                R$
-                { product.price }
+                { (Number(product.price)).toFixed(2).replace('.', ',') }
 
               </td>
               <td
                 className="sb"
                 data-testid={
-                  `customer_checkout__element-order-table-sub-total-${item + 1}`
+                  `customer_checkout__element-order-table-sub-total-${item}`
                 }
               >
-                R$
-                { (product.quantity * product.price).toFixed(2) }
+                { ((Number(product.quantity) * Number(product.price))
+                  .toFixed(2)).replace('.', ',') }
 
               </td>
               <td>
                 <button
+                  data-testid={
+                    `customer_checkout__element-order-table-remove-${item}`
+                  }
                   className="btnr"
                   type="button"
                   onClick={ () => removeItem(product.id) }
-                  data-testid={
-                    `customer_checkout__element-order-table-remove-${item + 1}`
-                  }
                 >
                   Remover
                 </button>

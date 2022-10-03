@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { getProductsById, updateStatus } from '../services/api';
 
-const prefix = 'customer_order_details__element-order';
-
 function ProductsDetails() {
   const [data, setData] = useState({});
   const [products, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const role = window.location.pathname.split('/')[1];
+  const prefix = `${role}_order_details__element-order`;
 
   const getTotalPrice = (data_) => {
     const prices = data_.map((item) => item.price * item.quantity);
@@ -17,7 +17,6 @@ function ProductsDetails() {
 
   const getData = async (id) => {
     const request = await getProductsById(id);
-    console.log(request);
     const date = request.saleDate.split('-');
     date[2] = date[2].slice(0, 2);
     request.saleDate = `${date[2]}/${date[1]}/${date[0]}`;
@@ -58,6 +57,7 @@ function ProductsDetails() {
               data-testid="customer_order_details__button-delivery-check"
               onClick={ () => updateStatus(data.id, 'ENTREGUE') }
               type="button"
+              disabled
             >
               MARCAR COMO ENTREGUE
             </button>
@@ -69,7 +69,7 @@ function ProductsDetails() {
                   <span
                     data-testid={ `${prefix}-table-item-number-${item.id}` }
                   >
-                    {index + 2}
+                    {index + 1}
                   </span>
                   <span
                     data-testid={ `${prefix}-table-name-${item.id}` }
@@ -94,7 +94,10 @@ function ProductsDetails() {
                 </div>
               ))}
           </div>
-          <h1 data-testid={ `${prefix}-total-price` }>{`Total: R$ ${totalPrice}`}</h1>
+          <h1 data-testid={ `${prefix}-total-price` }>
+            {`${Number(totalPrice)
+              .toFixed(2).replace('.', ',')}`}
+          </h1>
         </div>
       </main>
     </div>

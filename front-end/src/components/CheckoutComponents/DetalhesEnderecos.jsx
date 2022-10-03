@@ -42,13 +42,13 @@ function DetalhesEnderecos() {
       sellerId: id,
       totalPrice,
       saleDate,
-      status: 'PENDENTE',
+      status: 'Pendente',
       products: cart,
       deliveryNumber: number,
       deliveryAddress: address,
     };
     const order = await createOrder(body);
-    navigate(`/customer/details/${order.id}`);
+    navigate(`/customer/orders/${order.id}`);
   };
 
   useEffect(() => {

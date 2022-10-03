@@ -6,8 +6,10 @@ import { getCustomerOrders } from '../services/api';
 function MyOrders() {
   const [data, setData] = useState();
   const [address, setAddress] = useState();
+
   const getData = async (id) => {
     const request = await getCustomerOrders(id);
+    console.log(request);
     setData(request);
   };
 
@@ -19,7 +21,7 @@ function MyOrders() {
   };
 
   useEffect(() => {
-    const id = window.location.pathname.split('/')[3];
+    const { id } = JSON.parse(localStorage.getItem('user'));
     setAddress(window.location.pathname.split('/')[1] !== 'customer');
     getData(id);
   }, []);
@@ -34,7 +36,8 @@ function MyOrders() {
         role={ window.location.pathname.split('/')[1] }
         date={ formatDate(order.saleDate) }
         address={ address ? `${order.deliveryAddress}, ${order.deliveryNumber}` : '' }
-        totalPrice="23.80"
+        totalPrice={ Number(order.totalPrice)
+          .toFixed(2).replace('.', ',') }
       />))}
 
     </div>

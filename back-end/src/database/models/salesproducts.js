@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       field: 'quantity'
     },
   }, {
-    tableName: 'salesProducts',
+    tableName: 'sales_products',
     timestamps: false,
     underscored: true
   });
