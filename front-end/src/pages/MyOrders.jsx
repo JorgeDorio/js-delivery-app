@@ -9,6 +9,7 @@ function MyOrders() {
 
   const getData = async (id) => {
     const request = await getCustomerOrders(id);
+    console.log(request);
     setData(request);
   };
 
@@ -35,7 +36,8 @@ function MyOrders() {
         role={ window.location.pathname.split('/')[1] }
         date={ formatDate(order.saleDate) }
         address={ address ? `${order.deliveryAddress}, ${order.deliveryNumber}` : '' }
-        totalPrice="23.80"
+        totalPrice={ Number(order.totalPrice)
+          .toFixed(2).replace('.', ',') }
       />))}
 
     </div>

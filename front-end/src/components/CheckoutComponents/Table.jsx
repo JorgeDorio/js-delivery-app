@@ -81,12 +81,11 @@ function Table() {
                   .toFixed(2)).replace('.', ',') }
 
               </td>
-              <td
-                data-testid={
-                  `customer_checkout__element-order-table-remove-${item}`
-                }
-              >
+              <td>
                 <button
+                  data-testid={
+                    `customer_checkout__element-order-table-remove-${item}`
+                  }
                   className="btnr"
                   type="button"
                   onClick={ () => removeItem(product.id) }
